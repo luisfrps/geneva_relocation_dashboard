@@ -15,14 +15,22 @@ de `main` em ~1 min).
 
 ## Estrutura do index.html
 
-| Bloco | Onde | O que é |
-|---|---|---|
-| `<style>` | linha 8 | todo o CSS, minificado numa linha |
-| `T[]` | ~linha 29 | o **plano por dia** — uma tarefa por objeto: `{id, d:data, p:prioridade, c:categoria, s:[fases], t:texto, w:porquê}` |
-| `PHASE{}` | ~linha 95 | **ações imediatas por fase** (0..3), sem data — herdam o dia em que a fase foi selecionada |
-| funções de render | ~linha 116+ | `render()` chama `renderGate/renderStats/timeline/tasks/crit` |
+| Bloco | O que é |
+|---|---|
+| `<style>` | todo o CSS, minificado numa linha |
+| `T[]` | o **plano por dia** — uma tarefa por objeto: `{id, d:data, p:prioridade, c:categoria, s:[fases], t:texto, w:porquê}` |
+| `PHASE{}` | **ações imediatas por fase** (0..3), sem data — herdam o dia em que a fase foi selecionada |
+| `PLACES[]` | separador «Services & addresses» — moradas verificadas: `{g:grupo, k:kicker, items:[{n,a:morada,c:contactos,u:url,w:para quê}]}` |
+| `MAILS[]` | separador «Ready-to-send messages» — minutas: `{g,k,items:[{id,t,to,addr?,when,lang,s:assunto,b:corpo,n?:nota}]}` |
+| funções de render | `render()` faz o plano (`renderGate/renderStats/timeline/tasks/crit`); `renderPlaces()`/`renderMails()` correm **uma vez** no arranque |
 
-Constantes no topo do script: `START='2026-08-21'`, `END='2026-09-14'`, `KEY` (localStorage).
+Constantes no topo do script: `START='2026-08-21'`, `TARGET='2026-09-14'` (data de início na MSC,
+alimenta o contador), `END='2026-09-30'` (horizonte do plano — a burocracia de chegada não acaba no
+primeiro dia de trabalho), `KEY` (localStorage). **`TARGET` e `END` são coisas diferentes**; o
+contador usa `TARGET`, a timeline usa `END`.
+
+Três separadores (`setView('Plan'|'Places'|'Mails')`, `.view.on` mostra). Só o plano tem estado;
+os outros dois são referência estática com um botão de copiar (`copyMail`) e um `mailto:`.
 
 ## Modelo de fases (o coração da app)
 
@@ -50,4 +58,12 @@ o `imp` handler aceita `{state}` ou o objeto direto.
   de propósito — `toISOString()` daria o dia errado à noite. Não "arrumar" isto.
 - As tarefas são texto do dono. Ao alterar conteúdo, manter o `id` (é a chave do `done`) —
   mudar um `id` faz o utilizador perder o check dessa tarefa.
+- **Os ids seguem `DDNN` (dia do mês + sequência) e por isso colidem entre agosto e setembro**:
+  21 ago e 21 set dariam ambos `2101`. As tarefas de 15–30 de setembro levam prefixo `g`
+  (`g1501`, `g2301`…). Ao adicionar tarefas, confirmar `new Set(T.map(t=>t.id)).size === T.length`.
+- Moradas e prazos legais (OCPM 14 dias, LAMal 3 meses, matrícula 1 ano) foram verificados nas
+  fontes oficiais em agosto de 2026. Não inventar uma morada: confirmar antes de a escrever.
+- As minutas de email são rascunhos do dono, não aconselhamento. A do 2.º pilar diz o que a lei
+  já determina (só é partilhado o que foi constituído durante o casamento) — não a transformar
+  numa promessa de que resolve um partilha que o tribunal não ordenou.
 - Commit + push sempre no fim do trabalho (regra permanente do dono).

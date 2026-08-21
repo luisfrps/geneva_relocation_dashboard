@@ -5,25 +5,30 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Geneva Relocation Dashboard</title>
 <style>
-:root{--bg:#06111f;--panel:#0d1c2f;--panel2:#071522;--ink:#edf6ff;--muted:#9eb1c5;--line:#213b56;--blue:#4ea8f5;--cyan:#68e1d7;--green:#63d18a;--amber:#ffca68;--red:#ff7b86}*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:radial-gradient(900px 500px at 12% -12%,rgba(75,139,255,.23),transparent 60%),var(--bg);color:var(--ink)}.wrap{max-width:1180px;margin:auto;padding:24px 16px 52px}.hero,.panel{background:rgba(13,28,47,.94);border:1px solid rgba(255,255,255,.08);border-radius:22px}.hero{padding:26px;background:linear-gradient(135deg,#153354,#08192a)}.ey{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--cyan);font-weight:800}h1{font-size:clamp(31px,5vw,52px);margin:8px 0 10px}.sub{color:var(--muted);line-height:1.55}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:20px}.stat{background:var(--panel2);border-radius:14px;padding:14px}.stat b{display:block;font-size:22px}.stat span{font-size:11px;color:var(--muted)}.gate{margin-top:16px;padding:15px;border:1px solid #735c31;background:#2b2215;border-radius:15px}.gate.go{border-color:#32654a;background:#10281d}.gate strong{display:block;margin-bottom:5px}.gate select{width:100%;max-width:450px;background:#071522;color:var(--ink);border:1px solid var(--line);border-radius:9px;padding:10px;margin-top:9px}.phase-note{margin-top:9px;font-size:12px;color:#cfdae5}.bar{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}.btn{border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:9px 12px;border-radius:11px;cursor:pointer;font-weight:700}.btn.primary{background:#1769aa}.btn.danger{color:#ffc2c6;border-color:#66363c}.timeline{display:flex;gap:7px;overflow:auto;padding:12px}.day{min-width:68px;border:1px solid var(--line);background:#0a192a;color:var(--muted);border-radius:12px;padding:8px;text-align:center;cursor:pointer}.day strong{display:block;color:var(--ink);font-size:17px}.day.active{background:#173b60;border-color:#4a93cf}.day.today{box-shadow:inset 0 0 0 1px var(--cyan)}.grid{display:grid;grid-template-columns:minmax(0,1fr) 335px;gap:16px;margin-top:16px}.head{padding:18px 18px 8px}.head h2{margin:4px 0}.tasks{padding:8px 12px 15px}.task{display:grid;grid-template-columns:28px 1fr;gap:10px;padding:13px;border-radius:13px;margin:7px 0;background:rgba(255,255,255,.03);border:1px solid transparent}.task.over{border-color:rgba(255,123,134,.35);background:rgba(255,123,134,.05)}.task.done{opacity:.52}.task.done .tt{text-decoration:line-through}.check{width:22px;height:22px;border-radius:7px;border:1px solid #46627d;background:#071421;color:white;cursor:pointer}.check.on{background:#268255}.tt{font-weight:760;line-height:1.35}.meta{margin-top:6px;font-size:10px;color:var(--muted)}.pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:3px 6px;margin:2px 5px 0 0}.pill.critical{color:#ffadb4;border-color:#80414a}.pill.high{color:#ffd98e;border-color:#7c6030}.pill.phase{color:#a9e9e2;border-color:#3b6d69}.why{font-size:12px;color:#aebed0;line-height:1.45;margin-top:7px}.notice{padding:13px;border-radius:13px;border:1px solid rgba(255,123,134,.35);background:rgba(102,31,43,.22);margin:0 6px 10px}.notice b{color:#ffb1b7}.phasebox{padding:13px;border-radius:13px;border:1px solid rgba(104,225,215,.25);background:rgba(40,109,104,.10);margin:0 6px 10px}.phasebox b{color:#9cf0e9}.side{display:grid;gap:16px}.side .panel{padding:17px}.side h3{margin:5px 0 8px}.radar{font-size:12px;color:var(--muted);line-height:1.5}.radar b{color:var(--ink)}a{color:#8ecaff}.progress{height:9px;border-radius:999px;background:#071522;overflow:hidden;margin-top:10px}.progress i{display:block;height:100%;background:linear-gradient(90deg,#3d9fdf,#53d39e)}.custom{display:none;padding:0 18px 15px}.custom.open{display:grid;grid-template-columns:1fr 150px 120px auto;gap:8px}.custom input,.custom select{background:#071522;color:var(--ink);border:1px solid var(--line);border-radius:9px;padding:9px}.empty{padding:30px;text-align:center;color:var(--muted)}footer{color:#71879d;font-size:11px;margin-top:20px;line-height:1.5}@media(max-width:850px){.grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.custom.open{grid-template-columns:1fr}}
+:root{--bg:#06111f;--panel:#0d1c2f;--panel2:#071522;--ink:#edf6ff;--muted:#9eb1c5;--line:#213b56;--blue:#4ea8f5;--cyan:#68e1d7;--green:#63d18a;--amber:#ffca68;--red:#ff7b86}*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:radial-gradient(900px 500px at 12% -12%,rgba(75,139,255,.23),transparent 60%),var(--bg);color:var(--ink)}.wrap{max-width:1180px;margin:auto;padding:24px 16px 52px}.hero,.panel{background:rgba(13,28,47,.94);border:1px solid rgba(255,255,255,.08);border-radius:22px}.hero{padding:26px;background:linear-gradient(135deg,#153354,#08192a)}.ey{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--cyan);font-weight:800}h1{font-size:clamp(31px,5vw,52px);margin:8px 0 10px}.sub{color:var(--muted);line-height:1.55}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:20px}.stat{background:var(--panel2);border-radius:14px;padding:14px}.stat b{display:block;font-size:22px}.stat span{font-size:11px;color:var(--muted)}.gate{margin-top:16px;padding:15px;border:1px solid #735c31;background:#2b2215;border-radius:15px}.gate.go{border-color:#32654a;background:#10281d}.gate strong{display:block;margin-bottom:5px}.gate select{width:100%;max-width:450px;background:#071522;color:var(--ink);border:1px solid var(--line);border-radius:9px;padding:10px;margin-top:9px}.phase-note{margin-top:9px;font-size:12px;color:#cfdae5}.bar{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}.btn{border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:9px 12px;border-radius:11px;cursor:pointer;font-weight:700}.btn.primary{background:#1769aa}.btn.danger{color:#ffc2c6;border-color:#66363c}.timeline{display:flex;gap:7px;overflow:auto;padding:12px}.day{min-width:68px;border:1px solid var(--line);background:#0a192a;color:var(--muted);border-radius:12px;padding:8px;text-align:center;cursor:pointer}.day strong{display:block;color:var(--ink);font-size:17px}.day.active{background:#173b60;border-color:#4a93cf}.day.today{box-shadow:inset 0 0 0 1px var(--cyan)}.grid{display:grid;grid-template-columns:minmax(0,1fr) 335px;gap:16px;margin-top:16px}.head{padding:18px 18px 8px}.head h2{margin:4px 0}.tasks{padding:8px 12px 15px}.task{display:grid;grid-template-columns:28px 1fr;gap:10px;padding:13px;border-radius:13px;margin:7px 0;background:rgba(255,255,255,.03);border:1px solid transparent}.task.over{border-color:rgba(255,123,134,.35);background:rgba(255,123,134,.05)}.task.done{opacity:.52}.task.done .tt{text-decoration:line-through}.check{width:22px;height:22px;border-radius:7px;border:1px solid #46627d;background:#071421;color:white;cursor:pointer}.check.on{background:#268255}.tt{font-weight:760;line-height:1.35}.meta{margin-top:6px;font-size:10px;color:var(--muted)}.pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:3px 6px;margin:2px 5px 0 0}.pill.critical{color:#ffadb4;border-color:#80414a}.pill.high{color:#ffd98e;border-color:#7c6030}.pill.phase{color:#a9e9e2;border-color:#3b6d69}.why{font-size:12px;color:#aebed0;line-height:1.45;margin-top:7px}.notice{padding:13px;border-radius:13px;border:1px solid rgba(255,123,134,.35);background:rgba(102,31,43,.22);margin:0 6px 10px}.notice b{color:#ffb1b7}.phasebox{padding:13px;border-radius:13px;border:1px solid rgba(104,225,215,.25);background:rgba(40,109,104,.10);margin:0 6px 10px}.phasebox b{color:#9cf0e9}.side{display:grid;gap:16px}.side .panel{padding:17px}.side h3{margin:5px 0 8px}.radar{font-size:12px;color:var(--muted);line-height:1.5}.radar b{color:var(--ink)}a{color:#8ecaff}.progress{height:9px;border-radius:999px;background:#071522;overflow:hidden;margin-top:10px}.progress i{display:block;height:100%;background:linear-gradient(90deg,#3d9fdf,#53d39e)}.custom{display:none;padding:0 18px 15px}.custom.open{display:grid;grid-template-columns:1fr 150px 120px auto;gap:8px}.custom input,.custom select{background:#071522;color:var(--ink);border:1px solid var(--line);border-radius:9px;padding:9px}.empty{padding:30px;text-align:center;color:var(--muted)}footer{color:#71879d;font-size:11px;margin-top:20px;line-height:1.5}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 2px}.tab{border:1px solid var(--line);background:var(--panel);color:var(--muted);padding:10px 14px;border-radius:12px;cursor:pointer;font-weight:800;font-size:13px}.tab.on{background:#173b60;border-color:#4a93cf;color:var(--ink)}.view{display:none}.view.on{display:block}.grp{margin:22px 2px 10px}.grp h3{margin:3px 0 0}.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px}.place{background:var(--panel);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:15px}.place b{display:block;font-size:14px;line-height:1.35}.place .ad{font-size:12px;color:#cfdae5;margin-top:7px;line-height:1.55;word-break:break-word}.place .nb{font-size:12px;color:var(--muted);margin-top:9px;line-height:1.5}.mail{background:var(--panel);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:16px;margin:11px 0}.mail h4{margin:2px 0 5px;font-size:15px}.mail .to{font-size:11px;color:var(--muted);line-height:1.6}.mail .sj{font-size:12px;color:#cfdae5;margin-top:9px;word-break:break-word}.mail pre{white-space:pre-wrap;font-family:inherit;font-size:12.5px;line-height:1.6;color:#dbe6f2;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:13px;margin:9px 0 0;max-height:270px;overflow:auto}.mail .acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:11px}.mail .btn{font-size:12px;padding:8px 11px}.lang{display:inline-block;border:1px solid #3b6d69;color:#a9e9e2;border-radius:999px;padding:2px 7px;font-size:10px;font-weight:800;margin-left:7px;vertical-align:2px}.hint{color:var(--muted);font-size:12px;line-height:1.55;margin:2px 2px 0}@media(max-width:850px){.grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.custom.open{grid-template-columns:1fr}.cards{grid-template-columns:1fr}}
 </style>
 </head>
 <body><div class="wrap">
 <section class="hero">
 <div class="ey">Recruitment + relocation command centre • Geneva 2026</div>
 <h1>Geneva Relocation Dashboard</h1>
-<div class="sub">The MSC role is still conditional. Your third interview is on <b>2 September 2026</b> and the working target remains a possible start on <b>14 September 2026</b>. The daily plan now changes with the recruitment phase: obsolete tasks disappear, common tasks remain, and each new phase creates immediate actions that carry forward until completed.</div>
+<div class="sub">The MSC role is still conditional. Your third interview is on <b>2 September 2026</b> and the working target remains a possible start on <b>14 September 2026</b>. The daily plan changes with the recruitment phase: obsolete tasks disappear, common tasks remain, and each new phase creates immediate actions that carry forward until completed. The plan now runs to <b>30 September</b>, because the arrival admin — permit, health insurance, bank, pension, plates — does not finish on the first working day.</div>
 <div class="stats"><div class="stat"><b id="days">–</b><span>days to target start date</span></div><div class="stat"><b id="done">–</b><span>current-plan tasks completed</span></div><div class="stat"><b id="late">–</b><span>current-plan overdue</span></div><div class="stat"><b id="due">–</b><span>current-plan due today</span></div></div>
 <div class="gate" id="gate"><strong id="gateTitle"></strong><div id="gateText"></div><select id="stageSel"><option value="0">0 — Interview process (no offer yet)</option><option value="1">1 — Verbal offer received</option><option value="2">2 — Written offer / contract received</option><option value="3">3 — Contract signed — GO</option></select><div class="phase-note" id="phaseNote"></div></div>
 </section>
+<div class="tabs"><button class="tab on" id="tabPlan" onclick="setView('Plan')">Daily plan</button><button class="tab" id="tabPlaces" onclick="setView('Places')">Services &amp; addresses</button><button class="tab" id="tabMails" onclick="setView('Mails')">Ready-to-send messages</button></div>
+<div class="view on" id="viewPlan">
 <div class="bar"><button class="btn primary" onclick="goToday()">Jump to today</button><button class="btn" onclick="showAdd()">+ Add my own task</button><button class="btn" onclick="backup()">Export backup</button><label class="btn">Import backup<input id="imp" type="file" accept="application/json" hidden></label><button class="btn danger" onclick="resetAll()">Reset progress</button></div>
 <div class="panel"><div class="timeline" id="timeline"></div></div>
-<div class="grid"><main class="panel"><div class="head"><div class="ey" id="ey">TODAY</div><h2 id="title"></h2><div class="sub" id="desc"></div></div><div class="custom" id="custom"><input id="ct" placeholder="Task description"><input id="cd" type="date" min="2026-08-21" max="2026-09-14"><select id="cp"><option value="normal">Normal</option><option value="high">High</option><option value="critical">Critical</option></select><button class="btn primary" onclick="addCustom()">Save</button></div><div class="tasks" id="tasks"></div></main>
+<div class="grid"><main class="panel"><div class="head"><div class="ey" id="ey">TODAY</div><h2 id="title"></h2><div class="sub" id="desc"></div></div><div class="custom" id="custom"><input id="ct" placeholder="Task description"><input id="cd" type="date" min="2026-08-21" max="2026-09-30"><select id="cp"><option value="normal">Normal</option><option value="high">High</option><option value="critical">Critical</option></select><button class="btn primary" onclick="addCustom()">Save</button></div><div class="tasks" id="tasks"></div></main>
 <aside class="side"><div class="panel"><div class="ey">Critical path</div><h3>What can actually block you</h3><div id="critical" class="radar"></div><div class="progress"><i id="prog"></i></div><div id="pct" class="radar"></div></div><div class="panel"><div class="ey">Phase behaviour</div><h3>The list is deliberately different</h3><div class="radar"><p><b>Interview:</b> win the job and prepare only reversible relocation work.</p><p><b>Verbal offer:</b> convert promises into written terms; do not relocate yet.</p><p><b>Contract received:</b> validate every material term and sign only when acceptable.</p><p><b>Contract signed:</b> switch to execution — housing, OCPM, customs, car and travel.</p></div></div><div class="panel"><div class="ey">Official sources</div><h3>Useful links</h3><div class="radar"><p><a target="_blank" href="https://www.ge.ch/demander-permis-resider-travailler-geneve/activite-salariee-ressortissant-ue/aele">Geneva OCPM — EU/EFTA employee permit</a></p><p><a target="_blank" href="https://www.bazg.admin.ch/en/relocation-import-switzerland-procedure">Swiss Customs — relocation</a></p><p><a target="_blank" href="https://www.bazg.admin.ch/en/customs-clearance-vehicles-relocation">Swiss Customs — vehicle relocation</a></p><p><a target="_blank" href="https://www.bag.admin.ch/en/health-insurance-requirement-to-obtain-insurance-for-persons-resident-in-switzerland">Swiss compulsory health insurance</a></p></div></div></aside></div>
-<footer>Progress, custom tasks and recruitment phase are stored in this browser. When you move to a new phase, unfinished tasks from an obsolete phase stop counting as overdue; common preparation remains, and the new phase's immediate actions start carrying forward from the day you selected that phase.</footer>
+</div>
+<div class="view" id="viewPlaces"><div class="hint">Every address below was checked against the official source in August 2026. Opening hours change: call before you drive across town.</div><div id="places"></div></div>
+<div class="view" id="viewMails"><div class="hint">Drafts, not advice. Fill in every <b>[ ]</b>, read it once in your own voice, and keep a copy of what you sent and when — half of these are proof you will need later.</div><div id="mails"></div></div>
+<footer>The «Services &amp; addresses» and «Ready-to-send messages» tabs are static reference: nothing there is tracked or stored. Progress, custom tasks and recruitment phase are stored in this browser. When you move to a new phase, unfinished tasks from an obsolete phase stop counting as overdue; common preparation remains, and the new phase's immediate actions start carrying forward from the day you selected that phase.</footer>
 </div>
 <script>
-const START='2026-08-21',END='2026-09-14',KEY='genevaRelocationDashboard2026';
+const START='2026-08-21',TARGET='2026-09-14',END='2026-09-30',KEY='genevaRelocationDashboard2026';
 const STAGES=['Interview process','Verbal offer','Contract received','Contract signed'];
 const COMMON=[0,1,2,3];
 const T=[
@@ -90,7 +95,46 @@ const T=[
 {id:'1303',d:'2026-09-13',p:'normal',c:'Personal',s:[3],t:'Stop relocation admin early and protect sleep.',w:'The first working day is now the priority.'},
 {id:'1401',d:'2026-09-14',p:'critical',c:'Work',s:[3],t:'Start at MSC and confirm manager, HR contact, badge/access, equipment and onboarding schedule.',w:'Execution now shifts from relocation to the job.'},
 {id:'1402',d:'2026-09-14',p:'critical',c:'Portugal',s:[3],t:'Notify Portuguese Social Security/IEFP that paid employment has started, as applicable.',w:'Prevent unemployment payments from continuing incorrectly.'},
-{id:'1403',d:'2026-09-14',p:'high',c:'Work',s:[3],t:'Confirm payroll, tax-at-source, AVS/AHV and accident-insurance onboarding with MSC.',w:'Catch missing admin before the first payroll run.'}
+{id:'1403',d:'2026-09-14',p:'high',c:'Work',s:[3],t:'Confirm payroll, tax-at-source, AVS/AHV and accident-insurance onboarding with MSC.',w:'Catch missing admin before the first payroll run.'},
+/* Personal preparation, car logistics and the road trip. */
+{id:'2105',d:'2026-08-21',p:'normal',c:'Personal',s:COMMON,t:'Start a "travels in the car / stays in Portugal / comes later" list for everything you own: clothes, kitchen, tools, documents, sentimental items.',w:'The car is the entire moving van on the first trip. Deciding late is what forces expensive choices.'},
+{id:'2503',d:'2026-08-25',p:'normal',c:'Vehicle',s:COMMON,t:'Measure the boot and the back seat, then check the "travels in the car" list actually fits with the rear window still clear.',w:'Volume decides what moves on day one, not preference.'},
+{id:'2603',d:'2026-08-26',p:'normal',c:'Travel',s:[0,1,2],t:'Fix the two overnight areas: roughly Burgos or Vitoria after the first ~800 km, then Lyon, Bourg-en-Bresse or Bellegarde after the second. Save two free-cancellation options for each.',w:'Two nights is the honest pace for ~2,000 km in a loaded car.'},
+{id:'2703',d:'2026-08-27',p:'normal',c:'Personal',s:COMMON,t:'Book the haircut for the week of 31 August: before the interview, and still right for the first day in Geneva.',w:'Barbers fill up, and a last-minute haircut is a bad haircut.'},
+{id:'2803',d:'2026-08-28',p:'normal',c:'Travel',s:COMMON,t:'Settle the tolls: a Via-T / Bip&Go badge covers Spain and France, and the Swiss motorway vignette (CHF 40) can be bought at the border.',w:'Two days of toll friction is avoidable with one decision now.'},
+{id:'2903',d:'2026-08-29',p:'normal',c:'Personal',s:COMMON,t:'Book the medical, dental and optical appointments you want done in Portugal before leaving.',w:'The same appointment in Switzerland costs you the LAMal deductible and a waiting time.'},
+{id:'3103',d:'2026-08-31',p:'normal',c:'Personal',s:COMMON,t:'Haircut done: two days before the interview, not the night before.',w:'Leave it time to settle.'},
+{id:'0304',d:'2026-09-03',p:'normal',c:'Personal',s:[1,2,3],t:'Take the shirts, suits and coats to 5àSec (or your usual cleaner) and get the collection date in writing: you need them back by 7 September.',w:'Dry cleaning takes days you will not have later, and it costs roughly three times as much in Geneva.'},
+{id:'0404',d:'2026-09-04',p:'normal',c:'Portugal',s:COMMON,t:'List every Portuguese subscription and contract with its notice period: gym, internet, electricity, water, mobile, insurance, parking.',w:'Listing is free. Cancelling before a signature is not.'},
+{id:'0505',d:'2026-09-05',p:'high',c:'Pension',s:[3],t:'Ask MSC HR which pension fund (caisse de prévoyance) you will be affiliated to from 14 September, and for its name, address and regulations.',w:'You need the fund’s address before you can settle the second-pillar and civil-status point.'},
+{id:'0604',d:'2026-09-06',p:'high',c:'Vehicle',s:[3],t:'Trial-load the car: everything on the customs inventory in the boot, nothing blocking the rear window or the mirrors.',w:'Finding out it does not fit on departure morning costs you the first leg.'},
+{id:'0704',d:'2026-09-07',p:'high',c:'Personal',s:[1,2,3],t:'Collect the dry cleaning and pack the shirts flat, or on hangers laid across the back seat. Not folded into a suitcase.',w:'Pressed shirts are the cheapest professional advantage you have on day one.'},
+{id:'0705',d:'2026-09-07',p:'critical',c:'Vehicle',s:[3],t:'Final load, in customs order: inventoried goods in the boot, and the document pack, laptop, medication and 72-hour bag in the cabin.',w:'A customs officer must be able to see the declared goods without unloading the whole car.'},
+{id:'0804',d:'2026-09-08',p:'normal',c:'Portugal',s:[3],t:'Arrange what happens to your Portuguese post: CTT forwarding or a trusted address, and update the address wherever it still matters.',w:'Official letters do not follow you across a border.'},
+{id:'1003',d:'2026-09-10',p:'critical',c:'Immigration',s:[3],t:'Open the OCPM arrival declaration online (ge.ch e-démarches) on the day you arrive. The legal deadline is 14 days from arrival.',w:'The clock starts on arrival, not on your first working day.'},
+{id:'1104',d:'2026-09-11',p:'high',c:'Pension',s:[3],t:'Send the tracing request to the Centrale du 2e pilier for the assets from your earlier Swiss affiliation. It is free and takes about three months.',w:'Find the old money before arguing about how it is split.'},
+{id:'1203',d:'2026-09-12',p:'normal',c:'Housing',s:[3],t:'Start the long-term flat search properly and assemble the standard Geneva dossier: ID, permit, contract, salary, poursuites extract.',w:'Every landlord asks for the same dossier, so having it ready is the whole advantage.'},
+{id:'1204',d:'2026-09-12',p:'normal',c:'Finance',s:[3],t:'Order the extrait du registre des poursuites (Rue du Stand 46, or online). A new arrival gets an empty one: say so in the application.',w:'Nearly every Geneva rental application requires it.'},
+{id:'1404',d:'2026-09-14',p:'high',c:'Pension',s:[3],t:'Ask HR for the pension fund regulations and the beneficiary designation form (clause bénéficiaire), and return it completed.',w:'After a divorce the default beneficiary order is not necessarily the one you want.'},
+/* The first month in Geneva: the admin that only exists once you have actually moved. */
+{id:'g1501',d:'2026-09-15',p:'critical',c:'Immigration',s:[3],t:'Complete the OCPM file: passport, passport photo, signed contract, proof of accommodation and the arrival form.',w:'An incomplete file is the usual reason a permit takes months instead of weeks.'},
+{id:'g1502',d:'2026-09-15',p:'high',c:'Health',s:[3],t:'Compare LAMal insurers on priminfo.admin.ch and choose the model and the franchise. Take the cover WITHOUT accident, which your employer already covers.',w:'Paying twice for accident cover is the classic first-year mistake.'},
+{id:'g1601',d:'2026-09-16',p:'critical',c:'Health',s:[3],t:'Send the LAMal enrolment request with effect from your arrival date. The legal deadline is three months and the cover is retroactive if you meet it.',w:'Miss it and the canton assigns you an insurer, with a premium surcharge.'},
+{id:'g1602',d:'2026-09-16',p:'high',c:'Finance',s:[3],t:'Finish the Swiss bank account and send the IBAN to MSC payroll before the September cut-off.',w:'No IBAN, no salary payment.'},
+{id:'g1701',d:'2026-09-17',p:'critical',c:'Pension',s:[3],t:'Send the civil-status letter to the pension fund: divorced, and the contributions from this affiliation onwards belong to you alone.',w:'Only the assets built up during the marriage are divisible, but the record has to say so.'},
+{id:'g1702',d:'2026-09-17',p:'high',c:'Vehicle',s:[3],t:'Plan the vehicle: keep the customs paper from the border, then book the OCV (Route de Veyrier 86, Carouge). Swiss plates are due within one year of the move.',w:'The duty-free relocation import only holds if the paperwork chain is complete.'},
+{id:'g1801',d:'2026-09-18',p:'normal',c:'Work',s:[3],t:'Sit down with your manager on expectations: priorities, decision authority and what good looks like at 90 days.',w:'Week one is when this conversation is cheap.'},
+{id:'g1802',d:'2026-09-18',p:'normal',c:'Portugal',s:[3],t:'Register with the Portuguese Consulate in Geneva (Route de Ferney 220, Le Grand-Saconnex).',w:'It is what makes documents, renewals and voting workable from abroad.'},
+{id:'g1901',d:'2026-09-19',p:'normal',c:'Digital',s:[3],t:'Swiss essentials: mobile plan or eSIM, TPG transport pass, and your Geneva address on every account that sends post.',w:'Roaming and a Portuguese address both stop being workable quickly.'},
+{id:'g2001',d:'2026-09-20',p:'high',c:'Housing',s:[3],t:'A weekend of viewings, with the printed dossier in hand and a decision rule agreed with yourself beforehand.',w:'The Geneva market rewards whoever hands over a complete file first.'},
+{id:'g2201',d:'2026-09-22',p:'normal',c:'Finance',s:[3],t:'Check the first payslip line by line: AVS/AI/APG, LPP, impôt à la source, and that the LPP deduction matches the regulations.',w:'Payroll errors are easiest to fix in the first month.'},
+{id:'g2301',d:'2026-09-23',p:'critical',c:'Immigration',s:[3],t:'Deadline check: the 14-day OCPM window closes around today. Confirm the file is registered and keep the receipt.',w:'This is the one deadline with a legal consequence attached.'},
+{id:'g2401',d:'2026-09-24',p:'normal',c:'Health',s:[3],t:'Confirm the LAMal policy, the start date and the payment method, and check whether you qualify for the Geneva premium subsidy (subside).',w:'Geneva subsidises premiums well above what most people assume.'},
+{id:'g2501',d:'2026-09-25',p:'high',c:'Pension',s:[3],t:'Chase the second-pillar replies: log what you sent, on what date and to whom. Answers take weeks.',w:'An unanswered pension letter is indistinguishable from one that was never sent.'},
+{id:'g2601',d:'2026-09-26',p:'normal',c:'Portugal',s:[3],t:'Talk to an accountant about the change of tax residence: when to change the address at the AT, whether to appoint a fiscal representative, and the 2026 split year.',w:'The 183-day question decides which country taxes this year.'},
+{id:'g2701',d:'2026-09-27',p:'normal',c:'Personal',s:[3],t:'Plan trip two: what still has to come from Portugal, and whether it travels in the car or with a mover.',w:'The first car load was never going to be everything.'},
+{id:'g2801',d:'2026-09-28',p:'normal',c:'Personal',s:[3],t:'Take a real day off. No admin, no forms, no relocation.',w:'You have been running a project and a job change at the same time.'},
+{id:'g3001',d:'2026-09-30',p:'high',c:'Work',s:[3],t:'One-month review: permit, flat, plates, pension, insurance. Turn whatever is still open into a dated action.',w:'A month in is when unfinished admin quietly becomes a problem.'}
 ];
 const PHASE={
 0:[
@@ -113,11 +157,321 @@ const PHASE={
 {id:'phase3c',p:'critical',c:'Housing',t:'Activate the temporary Geneva accommodation shortlist and secure a suitable option.',w:'You need a landing address without wasting days.'},
 {id:'phase3d',p:'high',c:'Travel',t:'Activate the car route and road-hotel plan, keeping cancellation flexibility where practical.',w:'Execution should start immediately after signature.'}
 ]};
+/* ---------- Services and addresses (verified August 2026) ---------- */
+const PLACES=[
+{k:'Now, while you are still here',g:'Before you leave — Portugal',items:[
+ {n:'Barber / cabeleireiro',a:'Your usual place',w:'Book by 27 August for the week of 31 August: before the interview, and still right for the first day in Geneva.'},
+ {n:'5àSec, or your usual dry cleaner',u:'https://www.5asec.pt',w:'Shirts, suits and coats. Drop off on 3 September, collect by 7 September, and get that date written on the ticket. The same service in Geneva costs roughly three times as much.'},
+ {n:'CTT — mail forwarding',u:'https://www.ctt.pt',w:'Reencaminhamento de correio, or a trusted Portuguese address. Official letters do not follow you across a border.'},
+ {n:'Segurança Social Direta',u:'https://www.seg-social.pt',w:'Declare the start of paid employment abroad and stop any unemployment benefit from 14 September.'},
+ {n:'IEFP',u:'https://www.iefp.pt',w:'Cancel the jobseeker registration once the contract is signed and the start date is real.'},
+ {n:'Portal das Finanças (AT)',u:'https://www.portaldasfinancas.gov.pt',w:'Change of address and tax residence, once you have a Geneva address. Ask an accountant first about the 2026 split year.'}
+]},
+{k:'8 to 10 September — two nights, about 2,000 km',g:'On the road',items:[
+ {n:'Night 1 — Burgos or Vitoria-Gasteiz (ES)',w:'Roughly 800 km from Portugal. Free cancellation and late check-in only, for as long as the contract is unsigned.'},
+ {n:'Night 2 — Lyon, Bourg-en-Bresse or Bellegarde (FR)',w:'Roughly another 800 km. Sleeping here leaves about 120 km to the border, so you reach customs inside office hours instead of at closing time.'},
+ {n:'Swiss customs — Bardonnex (Genève-Autoroute)',a:'Chemin des Épinglis 20, 1257 Bardonnex',c:'+41 58 467 15 15 · Mon–Fri 07:00–12:00 and 13:00–17:00 · closed at weekends',u:'https://www.bazg.admin.ch/fr/demenagement-importation-procedure-a-suivre',w:'Where relocation goods are cleared. Bring form 18.44 filled in, the inventory valued in CHF, the signed contract and proof of accommodation. 10 September is a Thursday, so aim for the morning slot — arriving outside those hours means no clearance.'},
+ {n:'Swiss motorway vignette',c:'CHF 40, sold at the border crossing',w:'Required the moment you use a Swiss motorway. Buy it at Bardonnex if you have not already.'}
+]},
+{k:'Where you physically go',g:'Geneva — the first two weeks',items:[
+ {n:'OCPM — population and migration office',a:'Route de Chancy 88, 1213 Onex · post: Case postale 2652, 1211 Genève 2',c:'+41 22 546 47 95 · tram 14, stop "Bandol" · counters by appointment only',u:'https://www.ge.ch/annoncer-mon-arrivee-ocpm',w:'The arrival declaration and the B permit. It starts online on e-démarches, and the legal deadline is 14 days from arrival. Passport, photo, signed contract, proof of accommodation.'},
+ {n:'SAM — Service de l’assurance-maladie',a:'Route de Frontenex 62, 1207 Genève',c:'+41 22 546 19 00, Mon–Fri 09:00–12:00 · by appointment only',u:'https://www.ge.ch/organisation/service-assurance-maladie',w:'The cantonal authority that checks you are insured, and that handles the premium subsidy. Three months to enrol in LAMal; cover is retroactive to your arrival if you meet the deadline.'},
+ {n:'OCAS — Caisse cantonale genevoise de compensation (AVS)',a:'Rue des Gares 12, 1201 Genève · post: Case postale 2696, 1211 Genève 2',c:'+41 22 327 27 27 · Mon–Fri 09:00–16:00',u:'https://www.ocas.ch',w:'AVS/AI number and social insurance. MSC normally files this, but the number is yours and everything else keys off it, including the second pillar.'},
+ {n:'OCV — Office cantonal des véhicules',a:'Route de Veyrier 86, 1227 Carouge',c:'+41 22 388 30 30 · vehicules@etat.ge.ch · Mon 09:00–16:00, Tue–Fri 07:30–16:00',u:'https://www.ge.ch/organisation/office-cantonal-vehicules-ocv',w:'Swiss registration and plates. You have one year from the move, but the customs paper from the border has to come first.'},
+ {n:'Office cantonal des poursuites',a:'Rue du Stand 46, 1204 Genève',c:'+41 22 388 90 90 · Mon–Fri 08:30–15:30',u:'https://www.ge.ch/poursuites',w:'The extrait du registre des poursuites that nearly every landlord asks for. A new arrival gets an empty one: say so in the application rather than letting it look like a gap.'},
+ {n:'Consulado-Geral de Portugal',a:'Route de Ferney 220, 1218 Le Grand-Saconnex',c:'+41 22 791 76 36 · consulado.genebra@mne.pt · Mon–Fri 08:00–14:30',u:'https://genebra.consuladoportugal.mne.gov.pt',w:'Consular registration, documents and renewals. Appointments online; Geneva, Vaud and Valais are all covered from here.'},
+ {n:'MSC Mediterranean Shipping Company',a:'Chemin Rieu 12–14, 1208 Genève (Champel)',w:'Your office. Do the commute rehearsal before the first morning and find the actual entrance, not just the postcode.'}
+]},
+{k:'The divorce point, and the old money',g:'Second pillar — pension',items:[
+ {n:'Centrale du 2e pilier — Fonds de Garantie LPP',a:'Eigerplatz 2, 3007 Berne · post: Case postale 1023, 3000 Berne 14',c:'+41 31 380 79 71 · info@zentralstelle.ch',u:'https://sfbvg.ch/fr/missions/recherche-davoirs-de-la-prevoyance-professionnelle',w:'The federal body that traces forgotten occupational-pension assets. Written request, free, answer in about three months. This is where you look for what you paid in while you were married.'},
+ {n:'Your MSC pension fund (caisse de prévoyance)',c:'Ask HR for the name, address and regulations',w:'Where the new contributions go, and who must be told in writing that you are divorced. They also issue the beneficiary form.'},
+ {n:'Fondation institution supplétive LPP',a:'Boulevard de Grancy 39, 1006 Lausanne',c:'+41 21 340 63 33',u:'https://aeis.ch',w:'Holds vested benefits when no institution is known. Worth checking if the Centrale comes back empty.'}
+]}
+];
+/* ---------- Pre-written emails and messages ---------- */
+const MAILS=[
+{k:'Short messages, sent from Portugal',g:'Before you leave',items:[
+{id:'m01',t:'Barber — book the cut',to:'Your barber, by phone or WhatsApp',when:'27 August',lang:'PT',s:'(mensagem curta)',b:`Boa tarde. Queria marcar um corte para a semana de 31 de agosto, de manhã se for possível — idealmente segunda-feira, dia 31.
+
+Tenho uma entrevista no dia 2 e mudo-me para o estrangeiro pouco depois, por isso essa semana é mesmo a única que me serve. Obrigado!`},
+{id:'m02',t:'Dry cleaner — shirts, suits and coats',to:'5àSec or your usual cleaner, at the counter',when:'3 September',lang:'PT',s:'(mensagem curta)',b:`Boa tarde. Queria deixar [n.º] camisas, [n.º] fatos e [n.º] casacos para limpeza e engomadoria.
+
+Preciso de os levantar até ao dia 7 de setembro, sem exceção: parto para a Suíça no dia 8 e não há segunda oportunidade. Conseguem garantir essa data e escrevê-la no talão?
+
+Obrigado.`},
+{id:'m03',t:'Removal company — quote for what does not fit in the car',to:'Two or three international movers',when:'Once the contract is signed',lang:'PT',s:'Orçamento — mudança parcial Portugal → Genebra (Suíça)',b:`Exmos. Senhores,
+
+Vou mudar-me para Genebra, na Suíça, com início de funções a 14 de setembro de 2026. Levo de carro apenas o essencial e gostaria de orçamentar o transporte do restante.
+
+- Origem: [morada em Portugal]
+- Destino: Genebra (morada definitiva ainda por confirmar; entrega possível a partir de [data])
+- Volume aproximado: [m3 / n.º de caixas / mobiliário]
+- Data pretendida: [data]
+
+Agradecia que o orçamento indicasse:
+1. Se tratam do desalfandegamento e do formulário 18.44 (efeitos de mudança), ou se isso fica do meu lado;
+2. Se o seguro de transporte está incluído e com que limite de capital;
+3. Prazo de entrega e condições de armazenamento temporário, caso ainda não tenha morada definitiva.
+
+Com os melhores cumprimentos,
+[nome] — [telefone] — [e-mail]`},
+{id:'m04',t:'Car insurer — cover for Spain, France and Switzerland',to:'Your Portuguese insurer',when:'26 August, and again once you have a date',lang:'PT',s:'Cobertura em Espanha, França e Suíça — apólice [n.º], matrícula [XX-XX-XX]',b:`Exmos. Senhores,
+
+Vou conduzir de Portugal até Genebra (Suíça) entre 8 e 10 de setembro de 2026, atravessando Espanha e França, com o veículo de matrícula [XX-XX-XX], apólice [n.º].
+
+Agradeço a confirmação, por escrito:
+1. Que as coberturas da apólice (incluindo danos próprios, se aplicável) se mantêm válidas em Espanha, França e Suíça;
+2. Qual a assistência em viagem incluída nesses países, com o número de telefone a utilizar;
+3. Se a carta verde é necessária e como a obtenho;
+4. Quais as condições de cessação da apólice quando a viatura for matriculada na Suíça, e se há lugar a estorno de prémio.
+
+Com os melhores cumprimentos,
+[nome] — [telefone]`}
+]},
+{k:'Sent in the days around the move',g:'The move itself',items:[
+{id:'m05',t:'Swiss customs, Bardonnex — confirm the crossing',to:'Bureau de douane de Bardonnex — call +41 58 467 15 15',when:'6 September, two days before departure',lang:'FR',s:'Effets de déménagement — passage prévu le jeudi 10 septembre 2026 en matinée',b:`Madame, Monsieur,
+
+Je transfère mon domicile du Portugal à Genève et je prévois de me présenter au bureau de douane de Bardonnex le jeudi 10 septembre 2026 en matinée, avec mes effets de déménagement transportés dans mon véhicule immatriculé au Portugal ([immatriculation]).
+
+Je disposerai des documents suivants:
+- le formulaire 18.44 (déclaration pour effets de déménagement), rempli;
+- l'inventaire détaillé des biens, valeurs indiquées en CHF;
+- mon contrat de travail signé avec MSC Mediterranean Shipping Company S.A., entrée en fonction le 14 septembre 2026;
+- l'attestation de logement à Genève;
+- les documents du véhicule et mon permis de conduire.
+
+Pourriez-vous me confirmer:
+1. que le bureau est ouvert et compétent pour ce dédouanement ce jour-là;
+2. si un rendez-vous préalable est nécessaire;
+3. quels documents supplémentaires sont exigés pour le véhicule, et si celui-ci doit être déclaré en effets de déménagement ou faire l'objet d'une autorisation 15.30.
+
+En vous remerciant par avance, je vous prie d'agréer, Madame, Monsieur, mes salutations distinguées.
+
+[nom, prénom]
+[téléphone] — [e-mail]`,n:'Better done by telephone. The published Bardonnex mailbox is meant for commercial transit traffic, so call rather than risk the message sitting in the wrong inbox.'},
+{id:'m06',t:'Temporary accommodation — booking and the housing certificate',to:'The temporary flat, aparthotel or landlord',when:'5 September, as soon as you sign',lang:'FR',s:'Réservation du 10 septembre au [date] et attestation de logement',b:`Madame, Monsieur,
+
+Je souhaite confirmer une réservation à mon nom du 10 septembre au [date] pour une personne, à l'adresse [adresse].
+
+Je m'installe à Genève pour y travailler (entrée en fonction chez MSC le 14 septembre 2026). À ce titre, l'Office cantonal de la population et des migrations (OCPM) exige une attestation de logement pour l'annonce d'arrivée, à effectuer dans les 14 jours.
+
+Pourriez-vous, s'il vous plaît:
+1. me confirmer la réservation et les conditions d'annulation;
+2. m'établir une attestation de logement à mon nom, mentionnant l'adresse et la période, que je puisse joindre à mon dossier OCPM;
+3. m'indiquer les modalités d'arrivée (heure de remise des clés, parking éventuel pour un véhicule chargé).
+
+Avec mes remerciements, je vous prie d'agréer mes salutations distinguées.
+
+[nom, prénom] — [téléphone]`}
+]},
+{k:'Sent from Geneva, in the first days',g:'First week',items:[
+{id:'m07',t:'MSC HR — permit, onboarding and documents',to:'Your MSC HR contact',when:'The day after you sign',lang:'EN',s:'[Your name] — start 14 September: work permit, onboarding and documents',b:`Dear [name],
+
+Thank you for the signed contract. So that nothing delays the start on 14 September, could you confirm the following?
+
+1. Permit: does MSC file the OCPM application, or do I file it myself after arrival? If MSC files it, what do you need from me, and by when?
+2. Documents: I can send passport copy, passport photo, diplomas and my current address today. Tell me the format you prefer.
+3. Arrival: I will be in Geneva from 10 September and can attend any appointment from that date.
+4. First day: place, time, contact person and what to bring.
+5. Payroll: I will send the Swiss IBAN as soon as the account is open. What is the cut-off for the September payroll?
+6. Pension: which pension fund will I be affiliated to from 14 September? I would like its name, address and the regulations, as I have a civil-status point to settle in my first week.
+
+Best regards,
+[name] — [phone]`},
+{id:'m08',t:'LAMal — health insurance enrolment',to:'The insurer you pick on priminfo.admin.ch',when:'Within days of arriving; the legal deadline is three months',lang:'FR',s:'Demande d\'affiliation à l\'assurance obligatoire des soins (LAMal) dès le 10 septembre 2026',b:`Madame, Monsieur,
+
+J'ai pris domicile dans le canton de Genève le 10 septembre 2026. Je souhaite m'affilier à l'assurance obligatoire des soins avec effet à cette date, conformément à l'obligation légale d'assurance.
+
+Mes données:
+- Nom, prénom: [ ]
+- Date de naissance: [ ]
+- Nationalité: portugaise
+- N° AVS (si déjà attribué): 756.[ ]
+- Adresse à Genève: [ ]
+- Employeur: MSC Mediterranean Shipping Company S.A., Genève, dès le 14 septembre 2026
+
+Choix de couverture:
+- Modèle: [standard / médecin de famille / télémédecine]
+- Franchise annuelle: CHF [ ]
+- SANS couverture du risque accident: je suis assuré contre les accidents par mon employeur (LAA), travaillant plus de huit heures par semaine.
+
+Merci de me confirmer par écrit l'affiliation, la date d'effet, la prime mensuelle et mon numéro d'assuré, et de m'indiquer les pièces justificatives encore nécessaires.
+
+Je vous prie d'agréer, Madame, Monsieur, mes salutations distinguées.
+
+[nom, prénom] — [téléphone] — [e-mail]`,n:'The "without accident cover" line is the one that saves money: your employer already insures that risk. Also ask SAM about the cantonal premium subsidy.'},
+{id:'m09',t:'Bank — open the account',to:'The branch you choose, or its online form',when:'First week; you need the IBAN for payroll',lang:'FR',s:'Ouverture d\'un compte — nouveau résident à Genève, employé MSC',b:`Madame, Monsieur,
+
+Je viens de m'installer à Genève et je prends mes fonctions chez MSC Mediterranean Shipping Company S.A. le 14 septembre 2026. Je souhaite ouvrir un compte courant afin d'y recevoir mon salaire.
+
+Ma situation:
+- Ressortissant portugais, permis B en cours de délivrance (annonce d'arrivée déposée auprès de l'OCPM le [date])
+- Contrat de travail de durée indéterminée, joint à la présente
+- Adresse à Genève: [adresse]
+
+Pourriez-vous m'indiquer un rendez-vous dans les prochains jours et la liste exacte des documents à apporter? Je dispose du passeport, du contrat de travail, de l'attestation de logement et du récépissé OCPM.
+
+Avec mes remerciements, je vous prie d'agréer mes salutations distinguées.
+
+[nom, prénom] — [téléphone]`},
+{id:'m10',t:'Rental application — the message that wins the flat',to:'The régie or the landlord, with the dossier attached',when:'Every viewing, sent the same day',lang:'FR',s:'Candidature — [adresse de l\'appartement], dossier complet en pièce jointe',b:`Madame, Monsieur,
+
+Suite à la visite de l'appartement de [nombre] pièces situé [adresse], je vous confirme mon vif intérêt et vous adresse un dossier complet.
+
+- Nom, prénom: [ ] — [nationalité portugaise]
+- Situation professionnelle: [fonction] chez MSC Mediterranean Shipping Company S.A., Genève, contrat de durée indéterminée depuis le 14 septembre 2026
+- Salaire annuel brut: CHF [ ]
+- Permis: B, en cours de délivrance (récépissé OCPM joint)
+- Ménage: une personne, non-fumeur, sans animaux
+- Date d'entrée souhaitée: [date], flexible
+
+Pièces jointes: passeport, contrat de travail, récépissé OCPM, extrait du registre des poursuites, coordonnées bancaires.
+
+Note sur l'extrait de poursuites: étant arrivé en Suisse le 10 septembre 2026, mon extrait est vierge parce que je n'y ai aucun antécédent, et non parce qu'il serait incomplet. Je peux fournir toute pièce complémentaire utile.
+
+Je reste à votre entière disposition et vous prie d'agréer, Madame, Monsieur, mes salutations distinguées.
+
+[nom, prénom] — [téléphone] — [e-mail]`}
+]},
+{k:'The point about the divorce — send in the first fortnight',g:'Second pillar',items:[
+{id:'m11',t:'Pension fund — civil status after the divorce',to:'The MSC pension fund (get the address from HR first)',when:'17 September, once you know which fund',lang:'FR',s:'État civil et prévoyance professionnelle — [nom, prénom], né(e) le [date]',b:`Madame, Monsieur,
+
+Je prends mes fonctions auprès de MSC Mediterranean Shipping Company S.A. à Genève le 14 septembre 2026 et je suis affilié à votre institution de prévoyance depuis cette date.
+
+Je vous informe que je suis divorcé. Mon mariage avec Madame [nom complet] a été dissous par jugement du [date], rendu par [tribunal, lieu]. Une copie du jugement (et sa traduction, le cas échéant) est jointe à la présente.
+
+Je vous prie de bien vouloir:
+
+1. Enregistrer mon état civil "divorcé" dans votre système.
+
+2. Prendre acte que les cotisations et l'avoir de vieillesse constitués à compter de mon affiliation auprès de vous sont postérieurs à l'introduction de la procédure de divorce et ne sont donc pas soumis au partage prévu aux art. 122 ss CC et 22 ss LFLP, lequel ne porte que sur les avoirs acquis durant le mariage.
+
+3. Me confirmer par écrit qu'aucune prétention de mon ex-épouse n'est enregistrée sur cet avoir, et m'indiquer la marche à suivre au cas où une décision de partage vous serait néanmoins notifiée ultérieurement.
+
+4. Me faire parvenir le règlement de prévoyance ainsi que le formulaire de désignation des bénéficiaires, que je vous retournerai dûment complété.
+
+5. Me préciser si, compte tenu de la durée de mon mariage et des termes du jugement, mon ex-épouse pourrait être considérée comme conjoint divorcé au sens de l'art. 20 OPP 2 en cas de décès, afin que ma désignation de bénéficiaires soit établie en connaissance de cause.
+
+En vous remerciant de votre confirmation écrite, je vous prie d'agréer, Madame, Monsieur, mes salutations distinguées.
+
+[nom, prénom]
+[adresse à Genève]
+[téléphone] — [e-mail]
+N° AVS: 756.[ ]`,n:'This letter records the position; it does not create it. The split of what was built up during the marriage is decided by the divorce court, not by the fund. If the Portuguese decree never dealt with the Swiss second pillar, that is a lawyer question, not an administrative one — ask before you sign anything about it.'},
+{id:'m12',t:'Centrale du 2e pilier — trace the old assets',to:'Centrale du 2e pilier, Case postale 1023, 3000 Berne 14 · info@zentralstelle.ch',addr:'info@zentralstelle.ch',when:'11 September; the answer takes about three months',lang:'FR',s:'Demande de recherche d\'avoirs de prévoyance professionnelle',b:`Madame, Monsieur,
+
+Je vous prie de bien vouloir procéder à une recherche d'avoirs de libre passage ou de prévoyance professionnelle oubliés à mon nom, conformément aux art. 24a ss LFLP.
+
+Mes données:
+- Nom, prénom: [ ]
+- Nom(s) précédent(s), le cas échéant: [ ]
+- Date de naissance: [ ]
+- Nationalité: portugaise
+- N° AVS: 756.[ ] (ou ancien n° AVS: [ ])
+- Adresse actuelle: [adresse à Genève]
+
+Périodes d'affiliation connues en Suisse:
+- Employeur: [ ], du [ ] au [ ], lieu: [ ]
+- Employeur: [ ], du [ ] au [ ], lieu: [ ]
+
+Je vous saurais gré de m'indiquer les institutions de prévoyance ou de libre passage détenant des avoirs à mon nom, ainsi que la marche à suivre pour les regrouper.
+
+Je joins une copie de ma pièce d'identité.
+
+En vous remerciant, je vous prie d'agréer, Madame, Monsieur, mes salutations distinguées.
+
+[nom, prénom]
+[adresse] — [téléphone] — [e-mail]`,n:'Free of charge. Send it by post to Case postale 1023, 3000 Berne 14, or by e-mail. Do this before the letter to the old fund — you may not remember every institution that holds money.'},
+{id:'m13',t:'Previous fund — statement and state of the split',to:'The former pension fund or vested-benefits foundation, once the Centrale names it',when:'As soon as you have the name',lang:'FR',s:'Divorce — prestation de sortie et exécution du partage — [nom, prénom], n° AVS 756.[ ]',b:`Madame, Monsieur,
+
+J'ai été affilié auprès de votre institution du [date] au [date], au titre de mon emploi chez [employeur].
+
+Je suis divorcé depuis le [date] (jugement du [date], [tribunal]). Afin de clarifier définitivement ma situation, je vous prie de bien vouloir me communiquer, conformément à l'art. 24 LFLP:
+
+1. Le montant de ma prestation de sortie au jour de la conclusion du mariage, le [date];
+2. Le montant de ma prestation de sortie au jour de l'introduction de la procédure de divorce, le [date];
+3. L'état actuel de mon avoir auprès de vous, avec le détail des intérêts crédités;
+4. L'état d'exécution du partage éventuellement ordonné par le jugement de divorce: montant transféré, date, institution destinataire;
+5. La confirmation qu'aucune prétention n'est ouverte ni pendante sur cet avoir à ce jour.
+
+Ces informations me sont nécessaires pour la tenue de mon dossier de prévoyance et pour le transfert éventuel de cet avoir vers ma nouvelle institution de prévoyance à Genève.
+
+En vous remerciant de votre réponse écrite, je vous prie d'agréer, Madame, Monsieur, mes salutations distinguées.
+
+[nom, prénom]
+[adresse] — [téléphone] — [e-mail]`}
+]},
+{k:'Sent from Geneva, to Portugal',g:'Loose ends at home',items:[
+{id:'m14',t:'Segurança Social and IEFP — employment started abroad',to:'Segurança Social Direta, and IEFP if you are registered',when:'14 September, the first working day',lang:'PT',s:'Início de atividade profissional na Suíça — [nome], NISS [n.º]',b:`Exmos. Senhores,
+
+Venho por este meio informar que iniciei atividade profissional por conta de outrem na Suíça em 14 de setembro de 2026, ao serviço da MSC Mediterranean Shipping Company S.A., com sede em Genebra, ao abrigo de um contrato de trabalho de duração indeterminada.
+
+Dados:
+- Nome: [ ]
+- NISS: [ ]
+- NIF: [ ]
+- Morada na Suíça: [ ]
+
+Solicito, em conformidade:
+1. O registo da cessação de qualquer prestação de desemprego ou apoio equivalente com efeitos a 14 de setembro de 2026;
+2. A confirmação, por escrito, de que nada mais me é devido nem por mim devido a esse título;
+3. A indicação de quaisquer documentos que deva entregar, e do prazo para o fazer.
+
+Junto cópia do contrato de trabalho.
+
+Com os melhores cumprimentos,
+[nome] — [telefone] — [e-mail]`,n:'Do this on day one and keep the proof. Letting an unemployment payment continue after you start work is a debt you repay later, with the paperwork done at the worst possible moment.'},
+{id:'m15',t:'Accountant — tax residence and the 2026 split year',to:'Your accountant, or one you engage for this',when:'26 September, calmly, before year end',lang:'PT',s:'Mudança de residência fiscal para a Suíça — pedido de orientação',b:`Bom dia,
+
+Mudei-me para Genebra, Suíça, com início de funções a 14 de setembro de 2026, ao serviço da MSC. O contrato é de duração indeterminada e a minha intenção é residir de forma permanente na Suíça.
+
+Agradecia orientação sobre:
+1. A partir de que data devo alterar a morada e o estatuto de residência no Portal das Finanças, e qual o procedimento correto;
+2. Se, tendo permanecido mais de 183 dias em Portugal em 2026, sou considerado residente fiscal em Portugal em todo o ano ou se se aplica o regime de residência parcial;
+3. Que rendimentos suíços têm de ser declarados em Portugal relativamente a 2026, e como funciona a eliminação da dupla tributação ao abrigo da convenção Portugal–Suíça, tendo em conta o imposto retido na fonte em Genebra;
+4. Se devo nomear representante fiscal em Portugal e em que condições;
+5. Que obrigações permanecem quanto a [imóveis / contas bancárias / outros rendimentos] em Portugal.
+
+Fico a aguardar e agradeço desde já a disponibilidade.
+
+Com os melhores cumprimentos,
+[nome] — [telefone]`},
+{id:'m16',t:'Portuguese consulate in Geneva — consular registration',to:'consulado.genebra@mne.pt',addr:'consulado.genebra@mne.pt',when:'18 September',lang:'PT',s:'Inscrição consular — novo residente no cantão de Genebra',b:`Exmos. Senhores,
+
+Sou cidadão português e passei a residir no cantão de Genebra em 10 de setembro de 2026, por motivos profissionais (MSC Mediterranean Shipping Company S.A., Genebra).
+
+Venho solicitar a inscrição consular e agradeço que me informem:
+1. Se o processo pode ser concluído através do Consulado Virtual ou se é necessária presença;
+2. A lista de documentos a apresentar;
+3. A primeira data disponível para agendamento, caso seja necessário.
+
+Dados:
+- Nome: [ ]
+- Data de nascimento: [ ]
+- Cartão de Cidadão n.º: [ ], válido até [ ]
+- NIF: [ ]
+- Morada em Genebra: [ ]
+- Contacto: [telefone] — [e-mail]
+
+Com os melhores cumprimentos,
+[nome]`}
+]}
+];
 function td(){let x=new Date();return x.getFullYear()+'-'+String(x.getMonth()+1).padStart(2,'0')+'-'+String(x.getDate()).padStart(2,'0')}
 function pd(s){let a=s.split('-').map(Number);return new Date(a[0],a[1]-1,a[2])}
 function clamp(s){return s<START?START:s>END?END:s}
 function days(a,b){return Math.round((pd(b)-pd(a))/86400000)}
 function fmt(s,o={weekday:'long',day:'numeric',month:'long',year:'numeric'}){return new Intl.DateTimeFormat('en-GB',o).format(pd(s))}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c])}
+function flash(b,m){if(!b)return;b.dataset.o=b.dataset.o||b.textContent;b.textContent=m;setTimeout(()=>{b.textContent=b.dataset.o},1600)}
+function copyText(s,b){let ok=()=>flash(b,'Copied'),no=()=>{let a=document.createElement('textarea');a.value=s;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();try{document.execCommand('copy');ok()}catch(e){alert('Copy failed — select the text and copy it manually.')}a.remove()};if(navigator.clipboard&&window.isSecureContext)navigator.clipboard.writeText(s).then(ok,no);else no()}
+function subjOf(m){return m.s&&m.s.charAt(0)!=='('?m.s:''}
+function findMail(id){for(let g of MAILS){let m=g.items.find(x=>x.id===id);if(m)return m}return null}
+function copyMail(id,b){let m=findMail(id);if(m)copyText((subjOf(m)?subjOf(m)+'\n\n':'')+m.b,b)}
+function mailHref(m){return 'mailto:'+encodeURIComponent(m.addr||'')+'?subject='+encodeURIComponent(subjOf(m))+'&body='+encodeURIComponent(m.b)}
+function renderPlaces(){document.getElementById('places').innerHTML=PLACES.map(g=>'<div class="grp"><div class="ey">'+esc(g.k)+'</div><h3>'+esc(g.g)+'</h3></div><div class="cards">'+g.items.map(p=>'<div class="place"><b>'+esc(p.n)+'</b><div class="ad">'+(p.a?esc(p.a)+'<br>':'')+(p.c?esc(p.c)+'<br>':'')+(p.u?'<a target="_blank" rel="noopener" href="'+esc(p.u)+'">'+esc(p.u.replace(/^https?:\/\//,''))+'</a>':'')+'</div><div class="nb">'+esc(p.w)+'</div></div>').join('')+'</div>').join('')}
+function renderMails(){document.getElementById('mails').innerHTML=MAILS.map(g=>'<div class="grp"><div class="ey">'+esc(g.k)+'</div><h3>'+esc(g.g)+'</h3></div>'+g.items.map(m=>'<div class="mail"><h4>'+esc(m.t)+'<span class="lang">'+esc(m.lang)+'</span></h4><div class="to"><b>To:</b> '+esc(m.to)+' &nbsp;&middot;&nbsp; <b>When:</b> '+esc(m.when)+'</div><div class="sj"><b>Subject:</b> '+esc(m.s)+'</div><pre>'+esc(m.b)+'</pre>'+(m.n?'<div class="why">'+esc(m.n)+'</div>':'')+'<div class="acts"><button class="btn primary" onclick="copyMail(\''+m.id+'\',this)">Copy</button><a class="btn" href="'+esc(mailHref(m))+'">Open in mail app</a></div></div>').join('')).join('')}
+function setView(v){['Plan','Places','Mails'].forEach(k=>{document.getElementById('view'+k).classList.toggle('on',k===v);document.getElementById('tab'+k).classList.toggle('on',k===v)});window.scrollTo({top:0,behavior:'smooth'})}
 let S={done:{},custom:[],stage:0,stageStarted:{}};try{let r=localStorage.getItem(KEY);if(r)S=Object.assign(S,JSON.parse(r))}catch(e){}
 S.stage=Number(S.stage||0);S.stageStarted=S.stageStarted||{};if(!S.stageStarted[S.stage])S.stageStarted[S.stage]=td();
 let sel=clamp(td());
@@ -129,22 +483,22 @@ const done=id=>!!S.done[id];
 function save(){localStorage.setItem(KEY,JSON.stringify(S))}
 function tog(id){done(id)?delete S.done[id]:S.done[id]=new Date().toISOString();save();render()}
 function sortT(a,b){let r={critical:0,high:1,normal:2};return(r[a.p]??2)-(r[b.p]??2)||a.t.localeCompare(b.t)}
-function card(t,over){let ds=done(t.id);return `<div class="task ${over?'over':''} ${ds?'done':''}"><button class="check ${ds?'on':''}" onclick="tog('${t.id}')">${ds?'✓':''}</button><div><div class="tt">${t.t}</div><div class="meta"><span class="pill">${t.c}</span><span class="pill ${t.p}">${t.p.toUpperCase()}</span>${t.phase?'<span class="pill phase">PHASE ACTION</span>':''}${over?`<span class="pill critical">OVERDUE • ${fmt(t.d,{day:'numeric',month:'short'})}</span>`:''}</div><div class="why">${t.w||''}</div></div></div>`}
+function card(t,over){let ds=done(t.id);return `<div class="task ${over?'over':''} ${ds?'done':''}"><button class="check ${ds?'on':''}" onclick="tog('${t.id}')">${ds?'✓':''}</button><div><div class="tt">${esc(t.t)}</div><div class="meta"><span class="pill">${esc(t.c)}</span><span class="pill ${t.p}">${t.p.toUpperCase()}</span>${t.phase?'<span class="pill phase">PHASE ACTION</span>':''}${over?`<span class="pill critical">OVERDUE • ${fmt(t.d,{day:'numeric',month:'short'})}</span>`:''}</div><div class="why">${esc(t.w||'')}</div></div></div>`}
 function renderGate(){let n=stage(),g=document.getElementById('gate');document.getElementById('stageSel').value=n;let titles=['HOLD — Interview process','HOLD — Verbal offer only','REVIEW — Written contract received','GO — Contract signed'];let texts=['Win the job. Do reversible preparation only; no non-refundable relocation commitments.','Convert the offer into written terms and pin down timing. Do not relocate yet.','Validate the contract, resolve material issues and sign only if acceptable.','Relocation execution is unlocked. Work housing, OCPM, customs, car and travel aggressively.'];document.getElementById('gateTitle').textContent=titles[n];document.getElementById('gateText').textContent=texts[n];document.getElementById('phaseNote').textContent='This phase began on '+fmt(S.stageStarted[n]||td(),{day:'numeric',month:'long'})+'. Immediate phase actions carry forward until completed.';g.classList.toggle('go',n===3)}
 function currentPlan(){return all().filter(active)}
-function renderStats(){let a=currentPlan(),dn=a.filter(x=>done(x.id)).length,t=clamp(td()),late=a.filter(x=>x.d<t&&!done(x.id)).length,due=a.filter(x=>x.d===td()&&!done(x.id)).length;document.getElementById('days').textContent=Math.max(0,days(td(),END));document.getElementById('done').textContent=dn+'/'+a.length;document.getElementById('late').textContent=late;document.getElementById('due').textContent=due;let pc=a.length?Math.round(100*dn/a.length):0;document.getElementById('prog').style.width=pc+'%';document.getElementById('pct').textContent=pc+'% of the current phase plan complete.'}
+function renderStats(){let a=currentPlan(),dn=a.filter(x=>done(x.id)).length,t=clamp(td()),late=a.filter(x=>x.d<t&&!done(x.id)).length,due=a.filter(x=>x.d===td()&&!done(x.id)).length;document.getElementById('days').textContent=Math.max(0,days(td(),TARGET));document.getElementById('done').textContent=dn+'/'+a.length;document.getElementById('late').textContent=late;document.getElementById('due').textContent=due;let pc=a.length?Math.round(100*dn/a.length):0;document.getElementById('prog').style.width=pc+'%';document.getElementById('pct').textContent=pc+'% of the current phase plan complete.'}
 function range(){let r=[],d=pd(START),e=pd(END);while(d<=e){r.push(d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'));d.setDate(d.getDate()+1)}return r}
-function timeline(){let e=document.getElementById('timeline');e.innerHTML='';range().forEach(d=>{let b=document.createElement('button'),x=pd(d),wd=new Intl.DateTimeFormat('en-GB',{weekday:'short'}).format(x),mo=new Intl.DateTimeFormat('en-GB',{month:'short'}).format(x),n=currentPlan().filter(t=>t.d===d&&!done(t.id)).length;b.className='day'+(d===sel?' active':'')+(d===td()?' today':'');b.innerHTML=`<small>${wd}</small><strong>${x.getDate()}</strong><small>${mo}</small>${n?'<div style="font-size:9px;color:#68e1d7;margin-top:3px">'+n+' open</div>':''}`;b.onclick=()=>{sel=d;render()};e.appendChild(b)});setTimeout(()=>{let x=e.querySelector('.active');if(x)x.scrollIntoView({inline:'center',block:'nearest'})},20)}
-function tasks(){let e=document.getElementById('tasks'),a=currentPlan(),ov=a.filter(t=>t.d<sel&&!done(t.id)).sort(sortT),due=a.filter(t=>t.d===sel).sort(sortT);let futureLocked=T.filter(t=>t.d===sel&&!active(t)&&t.s&&t.s.some(v=>v>stage())).length;document.getElementById('ey').textContent=sel===td()?'TODAY':sel<td()?'PAST DAY':'UPCOMING DAY';document.getElementById('title').textContent=fmt(sel);document.getElementById('desc').textContent=`Phase: ${STAGES[stage()]}. ${ov.length} carried-over task(s), ${due.length} task(s) scheduled for this plan.${futureLocked?' '+futureLocked+' later-phase task(s) remain hidden until relevant.':''}`;let h='';if(sel===td())h+=`<div class="phasebox"><b>${STAGES[stage()]} plan is active.</b><div class="why">Changing the selector changes today's actions immediately. Tasks from obsolete phases are removed instead of becoming artificial overdue debt.</div></div>`;if(ov.length)h+=`<div class="notice"><b>${ov.length} current-plan task(s) should already be done.</b><div class="why">They carry forward until completed or until that recruitment phase becomes obsolete.</div></div>`+ov.map(t=>card(t,true)).join('');h+=due.map(t=>card(t,false)).join('');if(!h)h='<div class="empty">Nothing active or overdue for this phase on this day.</div>';e.innerHTML=h}
+function timeline(){let e=document.getElementById('timeline'),cp=currentPlan();e.innerHTML='';range().forEach(d=>{let b=document.createElement('button'),x=pd(d),wd=new Intl.DateTimeFormat('en-GB',{weekday:'short'}).format(x),mo=new Intl.DateTimeFormat('en-GB',{month:'short'}).format(x),n=cp.filter(t=>t.d===d&&!done(t.id)).length;b.className='day'+(d===sel?' active':'')+(d===td()?' today':'');b.innerHTML=`<small>${wd}</small><strong>${x.getDate()}</strong><small>${mo}</small>${n?'<div style="font-size:9px;color:#68e1d7;margin-top:3px">'+n+' open</div>':''}`;b.onclick=()=>{sel=d;render()};e.appendChild(b)});setTimeout(()=>{let x=e.querySelector('.active');if(x)x.scrollIntoView({inline:'center',block:'nearest'})},20)}
+function tasks(){let e=document.getElementById('tasks'),a=currentPlan(),cut=sel<td()?sel:clamp(td()),ov=a.filter(t=>t.d<cut&&!done(t.id)).sort(sortT),due=a.filter(t=>t.d===sel).sort(sortT);let futureLocked=T.filter(t=>t.d===sel&&!active(t)&&t.s&&t.s.some(v=>v>stage())).length;document.getElementById('ey').textContent=sel===td()?'TODAY':sel<td()?'PAST DAY':'UPCOMING DAY';document.getElementById('title').textContent=fmt(sel);document.getElementById('desc').textContent=`Phase: ${STAGES[stage()]}. ${ov.length} carried-over task(s), ${due.length} task(s) scheduled for this plan.${futureLocked?' '+futureLocked+' later-phase task(s) remain hidden until relevant.':''}`;let h='';if(sel===td())h+=`<div class="phasebox"><b>${STAGES[stage()]} plan is active.</b><div class="why">Changing the selector changes today's actions immediately. Tasks from obsolete phases are removed instead of becoming artificial overdue debt.</div></div>`;if(ov.length)h+=`<div class="notice"><b>${ov.length} current-plan task(s) should already be done.</b><div class="why">They carry forward until completed or until that recruitment phase becomes obsolete.</div></div>`+ov.map(t=>card(t,true)).join('');h+=due.map(t=>card(t,false)).join('');if(!h)h='<div class="empty">Nothing active or overdue for this phase on this day.</div>';e.innerHTML=h}
 function crit(){let x=currentPlan().filter(t=>t.p==='critical'&&t.d<=clamp(td())&&!done(t.id)).sort((a,b)=>a.d.localeCompare(b.d)),e=document.getElementById('critical');e.innerHTML=x.length?`<div class="notice"><b>${x.length} critical item(s) in the current phase.</b><div class="why">Next: ${x[0].t}</div></div>`:`<div class="why" style="color:#79d69a">Critical path currently clear for this phase.</div>`}
 function render(){renderGate();renderStats();timeline();tasks();crit()}
 function goToday(){sel=clamp(td());render()}
 function showAdd(){document.getElementById('custom').classList.toggle('open');document.getElementById('cd').value=sel}
-function addCustom(){let t=document.getElementById('ct').value.trim();if(!t)return;S.custom.push({id:'c'+Date.now(),d:document.getElementById('cd').value||sel,p:document.getElementById('cp').value,c:'My task',t,w:'Custom task added by you.'});document.getElementById('ct').value='';document.getElementById('custom').classList.remove('open');save();render()}
+function addCustom(){let t=document.getElementById('ct').value.trim();if(!t)return;if(!Array.isArray(S.custom))S.custom=[];S.custom.push({id:'c'+Date.now(),d:document.getElementById('cd').value||sel,p:document.getElementById('cp').value,c:'My task',t,w:'Custom task added by you.'});document.getElementById('ct').value='';document.getElementById('custom').classList.remove('open');save();render()}
 function backup(){let a=document.createElement('a'),b=new Blob([JSON.stringify({version:3,state:S},null,2)],{type:'application/json'});a.href=URL.createObjectURL(b);a.download='geneva-relocation-backup.json';a.click();URL.revokeObjectURL(a.href)}
 function resetAll(){if(confirm('Reset progress, recruitment phase and custom tasks?')){S={done:{},custom:[],stage:0,stageStarted:{0:td()}};save();render()}}
 document.getElementById('stageSel').onchange=e=>{let ns=Number(e.target.value),old=stage();if(ns!==old){S.stage=ns;S.stageStarted=S.stageStarted||{};S.stageStarted[ns]=td();save();sel=clamp(td());render()}};
 document.getElementById('imp').onchange=async e=>{try{let j=JSON.parse(await e.target.files[0].text());S=Object.assign({done:{},custom:[],stage:0,stageStarted:{}},j.state||j);S.stage=Number(S.stage||0);S.stageStarted=S.stageStarted||{};if(!S.stageStarted[S.stage])S.stageStarted[S.stage]=td();save();render()}catch(x){alert('Invalid backup file')}e.target.value=''};
-render();
+renderPlaces();renderMails();render();
 </script>
 </body></html>
