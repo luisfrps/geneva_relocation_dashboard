@@ -22,7 +22,8 @@ de `main` em ~1 min).
 | `PHASE{}` | **ações imediatas por fase** (0..3), sem data — herdam o dia em que a fase foi selecionada |
 | `PLACES[]` | separador «Services & addresses» — moradas verificadas: `{g:grupo, k:kicker, items:[{n,a:morada,c:contactos,u:url,w:para quê}]}` |
 | `MAILS[]` | separador «Ready-to-send messages» — minutas: `{g,k,items:[{id,t,to,addr?,when,lang,s:assunto,b:corpo,n?:nota}]}` |
-| funções de render | `render()` faz o plano (`renderGate/renderStats/timeline/tasks/crit`); `renderPlaces()`/`renderMails()` correm **uma vez** no arranque |
+| `PT`, `PT_T`, `PT_PL`, `PT_M` | a tradução para português (ver secção própria) |
+| funções de render | `render()` faz o plano (`renderGate/renderStats/timeline/tasks/crit`); `renderPlaces()`/`renderMails()` são chamados por `applyLang()` |
 
 Constantes no topo do script: `START='2026-08-21'`, `TARGET='2026-09-14'` (data de início na MSC,
 alimenta o contador), `END='2026-09-30'` (horizonte do plano — a burocracia de chegada não acaba no
@@ -44,10 +45,40 @@ os outros dois são referência estática com um botão de copiar (`copyMail`) e
 - Regra de negócio: nada irreversível (reservas não reembolsáveis, viagem) antes da fase 3 —
   as tarefas de execução vivem todas em `s:[3]`.
 
+## Idioma (EN ⇄ PT)
+
+Botão à direita dos separadores. `S.lang` (`'en'` por omissão) fica no mesmo blob do
+localStorage, logo viaja no export/import. **O inglês é a fonte**: uma chave em falta cai para
+inglês, nunca falha.
+
+Quatro dicionários, cada um com a chave que dá menos hipóteses de partir:
+
+| Dicionário | Chave | Valor |
+|---|---|---|
+| `PT` | a própria frase inglesa, ou um nome curto (`heroSub`, `sidePhases`, `footerTxt`) | a frase em PT |
+| `PT_T` | **id da tarefa** (`'2101'`, `'g1501'`, `'phase3a'`) | `[texto, porquê]` |
+| `PT_PL` | o `n` inglês da morada | `[nome, para quê, contactos, morada]` |
+| `PT_M` | id da mensagem (`'m11'`) | `[título, para quem, quando, nota]` |
+
+Acessores: `P(chave)` / `PF(chave,{v})` para interface, `TT(t)`/`TW(t)` para tarefas,
+`PL(p,i,fallback)`, `MT(m,i,fallback)`.
+
+- **HTML estático**: um atributo `data-i` marca o elemento. `data-i` vazio → a chave é o próprio
+  inglês; `data-i="heroSub"` → chave explícita. No arranque, `data-k` guarda o HTML inglês
+  original, e é para aí que o EN volta — por isso o inglês nunca depende do dicionário.
+- **`data-i` troca `innerHTML`**, por isso nunca o ponhas num elemento que contenha um nó com
+  estado (o `<input id="imp">` está fora do `<span data-i>` de propósito).
+- **Frases com números** usam marcadores `{n}` e `PF()`, nunca concatenação — em PT a ordem muda.
+- **As datas seguem a língua** (`loc()` → `pt-PT`/`en-GB`). Isto é só apresentação: as chaves
+  `YYYY-MM-DD` do estado continuam iguais.
+- **O corpo das mensagens NÃO se traduz.** Uma carta para a alfândega suíça tem de chegar em
+  francês; só os metadados (título, para quem, quando, nota) mudam de língua. Está dito no ecrã.
+- Ao acrescentar uma tarefa, acrescenta a entrada em `PT_T` com o mesmo id.
+
 ## Estado
 
 Tudo no browser, em `localStorage` sob a chave `genevaRelocationDashboard2026`:
-`{done:{id:iso}, custom:[], stage:0..3, stageStarted:{}}`. Export/Import JSON (`version:3`)
+`{done:{id:iso}, custom:[], stage:0..3, stageStarted:{}, lang:'en'|'pt'}`. Export/Import JSON (`version:3`)
 nos botões da barra. **Não há backend** — mexer no formato do estado parte os backups antigos;
 o `imp` handler aceita `{state}` ou o objeto direto.
 
