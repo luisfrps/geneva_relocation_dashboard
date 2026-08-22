@@ -22,6 +22,7 @@ de `main` em ~1 min).
 | `PHASE{}` | **ações imediatas por fase** (0..3), sem data — herdam o dia em que a fase foi selecionada |
 | `PLACES[]` | separador «Services & addresses» — moradas verificadas: `{g:grupo, k:kicker, items:[{n,a:morada,c:contactos,u:url,w:para quê}]}` |
 | `MAILS[]` | separador «Ready-to-send messages» — minutas: `{g,k,items:[{id,t,to,addr?,when,lang,s:assunto,b:corpo,n?:nota}]}` |
+| `GUIDE[id]` | o guia de cada tarefa: `{h, hp, l?, lp?}` — explicação e checklist, EN e PT no MESMO objeto |
 | `PT`, `PT_T`, `PT_PL`, `PT_M` | a tradução para português (ver secção própria) |
 | funções de render | `render()` faz o plano (`renderGate/renderStats/timeline/tasks/crit`); `renderPlaces()`/`renderMails()` são chamados por `applyLang()` |
 
@@ -75,10 +76,27 @@ Acessores: `P(chave)` / `PF(chave,{v})` para interface, `TT(t)`/`TW(t)` para tar
   francês; só os metadados (título, para quem, quando, nota) mudam de língua. Está dito no ecrã.
 - Ao acrescentar uma tarefa, acrescenta a entrada em `PT_T` com o mesmo id.
 
+## Guias e checklists
+
+Cada tarefa tem um botão «Como fazer isto» que abre um modal com a explicação e, quase sempre,
+uma checklist. **Todas as 117 tarefas (105 do `T` + 12 do `PHASE`) têm guia** — verifica com
+`[...T,...Object.values(PHASE).flat()].filter(t=>!GUIDE[t.id])` no console.
+
+- `GUIDE` é a **exceção ao padrão dos outros dicionários**: PT vive no mesmo objeto (`hp`, `lp`),
+  não num dicionário à parte. São 117 entradas com listas emparelhadas; separá-las garantia
+  desalinhamento. `gItems()` só usa `lp` se `lp.length === l.length`, senão cai para inglês.
+- `\n` no `h`/`hp` vira `<br>`. Tudo o resto é escapado.
+- O estado das checkboxes é `S.sub[taskId][índice]`, no mesmo blob do localStorage.
+- **O lembrete diário** é o painel «Listas por terminar» (`renderLists`): mostra toda a tarefa
+  com checklist incompleta cuja data já chegou, todos os dias, independentemente do dia
+  selecionado. É por isso que `openLists()` filtra por `t.d <= clamp(td())` e não por `sel`.
+- Marcar a tarefa como feita **não** limpa a checklist, e completar a checklist **não** marca a
+  tarefa — de propósito: uma é a intenção, a outra é o progresso.
+
 ## Estado
 
 Tudo no browser, em `localStorage` sob a chave `genevaRelocationDashboard2026`:
-`{done:{id:iso}, custom:[], stage:0..3, stageStarted:{}, lang:'en'|'pt'}`. Export/Import JSON (`version:3`)
+`{done:{id:iso}, custom:[], stage:0..3, stageStarted:{}, lang:'en'|'pt', sub:{taskId:{i:1}}}`. Export/Import JSON (`version:3`)
 nos botões da barra. **Não há backend** — mexer no formato do estado parte os backups antigos;
 o `imp` handler aceita `{state}` ou o objeto direto.
 
