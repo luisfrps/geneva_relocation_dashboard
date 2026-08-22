@@ -12,7 +12,7 @@
 <section class="hero">
 <div class="ey" data-i="heroEy">Recruitment + relocation command centre • Geneva 2026</div>
 <h1 data-i="heroH1">Geneva Relocation Dashboard</h1>
-<div class="sub" data-i="heroSub">The MSC role is still conditional. Your third interview is on <b>2 September 2026</b> and the working target remains a possible start on <b>14 September 2026</b>. The daily plan changes with the recruitment phase: obsolete tasks disappear, common tasks remain, and each new phase creates immediate actions that carry forward until completed. The plan now runs to <b>30 September</b>, because the arrival admin — permit, health insurance, bank, pension, plates — does not finish on the first working day.</div>
+<div class="sub" data-i="heroSub">The MSC role is still conditional. The third interview is a <b>proposed slot, not yet a booking</b>: MSC offered Wednesday 2 September, 15:00–16:00 Geneva time, you accepted on 20 August, and as of 22 August no invitation had arrived — the VP is on holiday and MSC said in writing they may have to move it. The working target remains a possible start on <b>14 September 2026</b>. The daily plan changes with the recruitment phase: obsolete tasks disappear, common tasks remain, and each new phase creates immediate actions that carry forward until completed. The plan now runs to <b>30 September</b>, because the arrival admin — permit, health insurance, bank, pension, plates — does not finish on the first working day.</div>
 <div class="stats"><div class="stat"><b id="days">–</b><span data-i>days to target start date</span></div><div class="stat"><b id="done">–</b><span data-i>current-plan tasks completed</span></div><div class="stat"><b id="late">–</b><span data-i>current-plan overdue</span></div><div class="stat"><b id="due">–</b><span data-i>current-plan due today</span></div></div>
 <div class="gate" id="gate"><strong id="gateTitle"></strong><div id="gateText"></div><select id="stageSel"><option value="0" data-i>0 — Interview process (no offer yet)</option><option value="1" data-i>1 — Verbal offer received</option><option value="2" data-i>2 — Written offer / contract received</option><option value="3" data-i>3 — Contract signed — GO</option></select><div class="phase-note" id="phaseNote"></div></div>
 </section>
@@ -32,7 +32,7 @@ const START='2026-08-21',TARGET='2026-09-14',END='2026-09-30',KEY='genevaRelocat
 const STAGES=['Interview process','Verbal offer','Contract received','Contract signed'];
 const COMMON=[0,1,2,3];
 const T=[
-{id:'2101',d:'2026-08-21',p:'critical',c:'Interview',s:[0],t:'Save and verify the invitation for the third MSC interview on 2 September.',w:'The third interview is the next real decision gate.'},
+{id:'2101',d:'2026-08-21',p:'critical',c:'Interview',s:[0],t:'There is no invitation yet. MSC proposed Wednesday 2 September, 15:00–16:00 Geneva time, and you accepted on 20 August — Dominique still has to book it around the VP holiday. Watch for the Teams invite and save it the moment it lands.',w:'The date the whole plan rests on is a proposal, not a booking. MSC said in writing they may have to move it.'},
 {id:'2102',d:'2026-08-21',p:'high',c:'Interview',s:[0],t:'Create one MSC interview dossier: role, interviewers, job requirements, strongest evidence and open questions.',w:'Centralise the material you need for the final interview.'},
 {id:'2103',d:'2026-08-21',p:'critical',c:'Risk',s:[0,1,2],t:'Keep all relocation spending refundable or avoid it completely until the contract is signed.',w:'Preparation is rational; irreversible commitment before signature is not.'},
 {id:'2104',d:'2026-08-21',p:'normal',c:'Documents',s:COMMON,t:'Create a relocation folder for ID, driving licence, car registration, insurance and future contract/housing documents.',w:'This remains useful in every phase.'},
@@ -98,6 +98,8 @@ const T=[
 {id:'1403',d:'2026-09-14',p:'high',c:'Work',s:[3],t:'Confirm payroll, tax-at-source, AVS/AHV and accident-insurance onboarding with MSC.',w:'Catch missing admin before the first payroll run.'},
 /* Personal preparation, car logistics and the road trip. */
 {id:'2105',d:'2026-08-21',p:'normal',c:'Personal',s:COMMON,t:'Start a "travels in the car / stays in Portugal / comes later" list for everything you own: clothes, kitchen, tools, documents, sentimental items.',w:'The car is the entire moving van on the first trip. Deciding late is what forces expensive choices.'},
+{id:'2504',d:'2026-08-25',p:'high',c:'Interview',s:[0],t:'If the Teams invite still has not arrived, send Dominique two lines: confirm the slot is actually booked, and confirm the hour in Geneva time.',w:'Five days of silence around a VP on holiday is exactly how a slot evaporates. Asking costs nothing; assuming costs the interview.'},
+{id:'2505',d:'2026-08-25',p:'high',c:'Interview',s:[0],t:'Settle the time zone: 15:00–16:00 in Geneva is 14:00–15:00 in Portugal. Fix the real hour in your calendar and move the preparation block so it stops overlapping the call itself.',w:'"3 to 4pm" was written from Geneva without saying so. An hour of ambiguity is an hour you can miss.'},
 {id:'2503',d:'2026-08-25',p:'normal',c:'Vehicle',s:COMMON,t:'Measure the boot and the back seat, then check the "travels in the car" list actually fits with the rear window still clear.',w:'Volume decides what moves on day one, not preference.'},
 {id:'2603',d:'2026-08-26',p:'normal',c:'Travel',s:[0,1,2],t:'Fix the two overnight areas: roughly Burgos or Vitoria after the first ~800 km, then Lyon, Bourg-en-Bresse or Bellegarde after the second. Save two free-cancellation options for each.',w:'Two nights is the honest pace for ~2,000 km in a loaded car.'},
 {id:'2703',d:'2026-08-27',p:'normal',c:'Personal',s:COMMON,t:'Book the haircut for the week of 31 August: before the interview, and still right for the first day in Geneva.',w:'Barbers fill up, and a last-minute haircut is a bad haircut.'},
@@ -191,6 +193,20 @@ const PLACES=[
 /* ---------- Pre-written emails and messages ---------- */
 const MAILS=[
 {k:'Short messages, sent from Portugal',g:'Before you leave',items:[
+{id:'m00',t:'MSC — chase the interview invitation',to:'dominique.muhlematter@msc.com',addr:'dominique.muhlematter@msc.com',when:'25 August, if no Teams invite has arrived',lang:'EN',s:'Re: MSC next step',b:`Hello Dom,
+
+A short note to make sure nothing is stuck on my side: I have not yet received the Teams invitation for Wednesday 2 September, so I wanted to check the slot is holding while the VP is away.
+
+Two things would help me prepare properly:
+
+1. Could you confirm the meeting is booked, or tell me if the VP's return means it has to move? Either is completely fine — I would just rather know early than late.
+2. Could you confirm the hour in Geneva time? I am in Portugal, one hour behind, and I want to be certain I am on the call at the right moment.
+
+Thank you again for keeping this moving.
+
+Best regards,
+Luís Silva
++351 96 32 46 441`,n:'Reply inside the existing "MSC next step" thread rather than starting a new one, so the history stays together. Dominique writes informally and answered you within the hour last time — keep it short and do not apologise for asking.'},
 {id:'m01',t:'Barber — book the cut',to:'Your barber, by phone or WhatsApp',when:'27 August',lang:'PT',s:'(mensagem curta)',b:`Boa tarde. Queria marcar um corte para a semana de 31 de agosto, de manhã se for possível — idealmente segunda-feira, dia 31.
 
 Tenho uma entrevista no dia 2 e mudo-me para o estrangeiro pouco depois, por isso essa semana é mesmo a única que me serve. Obrigado!`},
@@ -462,7 +478,7 @@ const PT={
 /* interface */
 'heroEy':'Centro de comando do recrutamento e da mudança • Genebra 2026',
 'heroH1':'Painel da Mudança para Genebra',
-'heroSub':'O lugar na MSC continua condicional. A terceira entrevista é a <b>2 de setembro de 2026</b> e o alvo de trabalho continua a ser um começo possível a <b>14 de setembro de 2026</b>. O plano diário muda com a fase do recrutamento: as tarefas obsoletas desaparecem, as comuns ficam, e cada fase nova cria ações imediatas que transitam até estarem feitas. O plano vai agora até <b>30 de setembro</b>, porque a burocracia da chegada — autorização, seguro de saúde, banco, pensões, matrícula — não acaba no primeiro dia de trabalho.',
+'heroSub':'O lugar na MSC continua condicional. A terceira entrevista é uma <b>proposta de horário, ainda não uma marcação</b>: a MSC ofereceu quarta-feira, 2 de setembro, das 15:00 às 16:00 de Genebra, aceitaste a 20 de agosto, e a 22 de agosto ainda não tinha chegado convite nenhum — o VP está de férias e a MSC escreveu que pode ter de mudar a data. O alvo de trabalho continua a ser um começo possível a <b>14 de setembro de 2026</b>. O plano diário muda com a fase do recrutamento: as tarefas obsoletas desaparecem, as comuns ficam, e cada fase nova cria ações imediatas que transitam até estarem feitas. O plano vai agora até <b>30 de setembro</b>, porque a burocracia da chegada — autorização, seguro de saúde, banco, pensões, matrícula — não acaba no primeiro dia de trabalho.',
 'days to target start date':'dias até à data de início prevista',
 'current-plan tasks completed':'tarefas concluídas neste plano',
 'current-plan overdue':'em atraso neste plano',
@@ -530,7 +546,7 @@ const PT={
 };
 /* Tarefas e ações de fase, por id: [texto, porquê] */
 const PT_T={
-'2101':['Guardar e confirmar o convite para a terceira entrevista da MSC, a 2 de setembro.','A terceira entrevista é o próximo portão de decisão a sério.'],
+'2101':['Ainda não há convite nenhum. A MSC propôs quarta-feira, 2 de setembro, das 15:00 às 16:00 (hora de Genebra), e aceitaste a 20 de agosto — o Dominique ainda tem de marcar, à volta das férias do VP. Fica atento ao convite do Teams e guarda-o assim que chegar.','A data em que assenta o plano todo é uma proposta, não uma marcação. A MSC escreveu que pode ter de a mudar.'],
 '2102':['Criar um dossiê único da entrevista MSC: função, entrevistadores, requisitos, provas mais fortes e perguntas em aberto.','Centralizar o material de que precisas para a entrevista final.'],
 '2103':['Manter reembolsável todo o gasto com a mudança, ou não o fazer de todo, até o contrato estar assinado.','Preparar é racional; comprometer-se de forma irreversível antes da assinatura não é.'],
 '2104':['Criar uma pasta da mudança: identificação, carta de condução, livrete, seguro e os futuros documentos de contrato e habitação.','Isto continua útil em qualquer fase.'],
@@ -595,6 +611,8 @@ const PT_T={
 '1402':['Comunicar à Segurança Social e ao IEFP que iniciaste trabalho por conta de outrem, conforme aplicável.','Impedir que pagamentos de desemprego continuem indevidamente.'],
 '1403':['Confirmar com a MSC o processamento salarial, o imposto na fonte, a AVS/AHV e o seguro de acidentes.','Apanhar burocracia em falta antes do primeiro processamento.'],
 '2105':['Começar uma lista de "vai no carro / fica em Portugal / vem depois" para tudo o que tens: roupa, cozinha, ferramentas, documentos, coisas com valor sentimental.','O carro é a mudança toda na primeira viagem. Decidir tarde é o que obriga a escolhas caras.'],
+'2504':['Se o convite do Teams ainda não tiver chegado, manda duas linhas ao Dominique: confirmar que a marcação está mesmo feita, e confirmar a hora em hora de Genebra.','Cinco dias de silêncio à volta de um VP de férias é exatamente como uma marcação se evapora. Perguntar não custa nada; assumir custa a entrevista.'],
+'2505':['Resolver o fuso: 15:00–16:00 em Genebra são 14:00–15:00 em Portugal. Fixa a hora real na agenda e mexe o bloco de preparação, que neste momento está por cima da própria chamada.','O «3 às 4 da tarde» foi escrito de Genebra sem o dizer. Uma hora de ambiguidade é uma hora que se pode falhar.'],
 '2503':['Medir a mala e o banco de trás e confirmar que a lista do "vai no carro" cabe mesmo, com o vidro traseiro desimpedido.','Quem decide o que vai no primeiro dia é o volume, não a vontade.'],
 '2603':['Fixar as duas zonas para dormir: por volta de Burgos ou Vitoria ao fim dos primeiros ~800 km, depois Lyon, Bourg-en-Bresse ou Bellegarde ao fim dos segundos. Guardar duas opções com cancelamento gratuito para cada.','Duas noites é o ritmo honesto para ~2.000 km com o carro carregado.'],
 '2703':['Marcar o corte de cabelo para a semana de 31 de agosto: antes da entrevista, e ainda apresentável para o primeiro dia em Genebra.','Os barbeiros enchem-se, e um corte à última da hora é um mau corte.'],
@@ -669,6 +687,7 @@ const PT_PL={
 };
 /* Metadados das mensagens, por id: [título, para quem, quando, nota] */
 const PT_M={
+'m00':['MSC — insistir no convite da entrevista','dominique.muhlematter@msc.com','25 de agosto, se não tiver chegado convite do Teams','Responde dentro do fio «MSC next step» que já existe, em vez de abrires um novo, para o histórico ficar junto. O Dominique escreve de forma informal e da última vez respondeu-te dentro da hora — sê curto e não peças desculpa por perguntares.'],
 'm01':['Barbeiro — marcar o corte','O teu barbeiro, por telefone ou WhatsApp','27 de agosto'],
 'm02':['Lavandaria — camisas, fatos e casacos','5àSec ou a lavandaria do costume, ao balcão','3 de setembro'],
 'm03':['Transportadora — orçamento para o que não cabe no carro','Duas ou três empresas de mudanças internacionais','Quando o contrato estiver assinado'],
