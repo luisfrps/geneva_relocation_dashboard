@@ -87,6 +87,22 @@ o `imp` handler aceita `{state}` ou o objeto direto.
 - Não há `npm`, testes nem build. Abrir `index.html` no browser é o ciclo completo.
 - Datas são **locais**, nunca UTC: `td()` e `pd()` constroem/leem `YYYY-MM-DD` com campos locais
   de propósito — `toISOString()` daria o dia errado à noite. Não "arrumar" isto.
+- **O repositório é PÚBLICO** e o GitHub Pages serve-o a quem tiver o link. Nada de nomes de
+  terceiros, emails pessoais, números de telefone, moradas privadas ou detalhes de emprego neste
+  ficheiro. Nas minutas usa `[nome]`, `[telefone]`. Emails institucionais (consulado, alfândega,
+  `info@zentralstelle.ch`) podem ficar; o email de uma pessoa concreta não.
+- **Não afirmar o que não está verificado.** Duas tarefas já mandaram o dono fazer coisas
+  impossíveis — guardar um convite que nunca foi enviado, e tratar como reembolsável um custo que
+  ninguém se ofereceu para pagar. Regra: uma tarefa só afirma um facto se ele estiver numa fonte
+  (email, agenda) ou tiver sido dito pelo dono. Caso contrário é «confirmar X», não «fazer X».
+- **Pressupostos vivem à vista**, na caixa `data-i="assum"` no topo do plano — não escondidos
+  dentro do texto das tarefas. Ao acrescentar um pressuposto novo, acrescenta-o lá.
+- **Tarefas condicionais ganham etiqueta automaticamente**: `cond(t)` marca as categorias
+  `Vehicle`/`Travel`/`Insurance` com «SE FORES DE CARRO» e `Customs` com «SE LEVARES AS TUAS
+  COISAS». Se puseres uma tarefa condicional noutra categoria, a etiqueta não aparece — mete a
+  condição no próprio texto.
+- **`TARGET` (14 de setembro) é um pressuposto, não um facto.** Nenhuma mensagem da MSC alguma vez
+  nomeou data de início. Se surgir uma data real, muda `TARGET` e desloca as datas das tarefas.
 - As tarefas são texto do dono. Ao alterar conteúdo, manter o `id` (é a chave do `done`) —
   mudar um `id` faz o utilizador perder o check dessa tarefa.
 - **Os ids seguem `DDNN` (dia do mês + sequência) e por isso colidem entre agosto e setembro**:
