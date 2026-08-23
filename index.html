@@ -553,6 +553,8 @@ const PT={
 'Signed out. Everything stays on this device.':'Sessão terminada. Fica tudo neste dispositivo.',
 'Signed in as {e}.':'Sessão iniciada como {e}.',
 'Last synced: {d}':'Última sincronização: {d}',
+'The server holds a copy from {d}.':'O servidor tem uma cópia de {d}.',
+'The server does not hold a copy yet — press Sync now.':'O servidor ainda não tem cópia nenhuma — carrega em Sincronizar agora.',
 'Every change is sent automatically a moment after you make it. Open the same account on another device and the state follows you.':'Cada alteração é enviada automaticamente um instante depois de a fazeres. Abre a mesma conta noutro dispositivo e o estado vai contigo.',
 'Sign in to keep this dashboard on every device: the installed app and the browser share the same account.':'Entra para teres este painel em todos os dispositivos: a aplicação instalada e o browser partilham a mesma conta.',
 'The password never leaves this browser: it is stretched here and only the result is sent. That also means nobody can reset it for you — write it down somewhere safe.':'A palavra-passe nunca sai deste browser: é esticada aqui e só o resultado é enviado. Isso também quer dizer que ninguém a pode recuperar por ti — escreve-a num sítio seguro.',
@@ -1190,7 +1192,10 @@ document.getElementById('modal').classList.add('on')}
 function closeGuide(e){if(e&&e.target&&e.target.id!=='modal')return;document.getElementById('modal').classList.remove('on')}
 function openBox(ey,title,html){document.getElementById('mbox').innerHTML='<div class="ey">'+esc(ey)+'</div><h3>'+esc(title)+'</h3><div class="gh">'+html+'</div><div class="mfoot"><button class="btn primary" onclick="closeGuide()">'+esc(P('Close'))+'</button></div>';document.getElementById('modal').classList.add('on')}
 let deferredPrompt=null;
-function isInstalled(){try{return window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone===true}catch(e){return false}}
+/* Nem todos os browsers abrem a app instalada em standalone: o Brave e outros
+   usam minimal-ui ou window-controls-overlay. Qualquer modo que nao seja
+   browser conta como instalada, senao o botao de instalar fica la' dentro. */
+function isInstalled(){try{return ['standalone','minimal-ui','fullscreen','window-controls-overlay'].some(m=>window.matchMedia('(display-mode: '+m+')').matches)||window.navigator.standalone===true}catch(e){return false}}
 function updateInstall(){let b=document.getElementById('insBtn');if(!b)return;if(isInstalled()){b.style.display='none';return}b.style.display='';b.textContent=P('Install on this computer')}
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;updateInstall()});
 window.addEventListener('appinstalled',()=>{deferredPrompt=null;updateInstall()});
@@ -1212,18 +1217,28 @@ let bits=await crypto.subtle.deriveBits({name:'PBKDF2',salt:e.encode('geneva:'+e
 return [...new Uint8Array(bits)].map(b=>b.toString(16).padStart(2,'0')).join('')}
 function signedOut(){AUTH={};saveAuth();setSync('');openAccount(P('Your session expired. Sign in again.'))}
 function schedulePush(){if(!AUTH.token)return;clearTimeout(pushTimer);pushTimer=setTimeout(pushState,1500)}
+/* Ha' conteudo a perder? Serve para um dispositivo vazio nunca apagar
+   por cima de um servidor com progresso, mesmo que os carimbos digam o contrario. */
+function hasContent(s){return !!(s&&((s.done&&Object.keys(s.done).length)||(s.custom&&s.custom.length)||(s.sub&&Object.keys(s.sub).length)||Number(s.stage||0)>0))}
 async function pushState(){if(!AUTH.token)return;setSync('saving');
-try{let r=await fetch(API+'/state',{method:'PUT',headers:{'Content-Type':'application/json',Authorization:'Bearer '+AUTH.token},body:JSON.stringify({state:S,updatedAt:S.updatedAt||Date.now()})});
+try{let at=Number(S.updatedAt)||Date.now();
+let r=await fetch(API+'/state',{method:'PUT',headers:{'Content-Type':'application/json',Authorization:'Bearer '+AUTH.token},body:JSON.stringify({state:S,updatedAt:at})});
 if(r.status===401){signedOut();return}
-if(!r.ok)throw new Error('http '+r.status);AUTH.syncedAt=Date.now();saveAuth();setSync('ok')}catch(e){setSync('offline')}}
+if(!r.ok)throw new Error('http '+r.status);
+let d=await r.json().catch(()=>({}));
+/* Gravar o carimbo aceite pelo servidor sem passar por save(): save() empurrava outra vez. */
+S.updatedAt=Number(d.updatedAt)||at;localStorage.setItem(KEY,JSON.stringify(S));
+AUTH.serverAt=S.updatedAt;AUTH.syncedAt=Date.now();saveAuth();setSync('ok')}catch(e){setSync('offline')}}
 async function pullState(){if(!AUTH.token)return;setSync('syncing');
 try{let r=await fetch(API+'/state',{headers:{Authorization:'Bearer '+AUTH.token}});
 if(r.status===401){signedOut();return}
 if(!r.ok)throw new Error('http '+r.status);
 let d=await r.json(),localAt=Number(S.updatedAt||0),remoteAt=Number(d.updatedAt||0);
-if(d.state&&remoteAt>localAt){S=Object.assign({done:{},custom:[],stage:0,stageStarted:{},lang:'en',sub:{}},d.state);S.updatedAt=remoteAt;normalizeState();save(false);applyLang()}
-else if(localAt>remoteAt){await pushState();return}
-AUTH.syncedAt=Date.now();saveAuth();setSync('ok')}catch(e){setSync('offline')}}
+let takeRemote=d.state&&(hasContent(d.state)&&!hasContent(S)||remoteAt>localAt);
+if(takeRemote){S=Object.assign({done:{},custom:[],stage:0,stageStarted:{},lang:'en',sub:{}},d.state);S.updatedAt=remoteAt||Date.now();normalizeState();save(false);applyLang();
+AUTH.serverAt=remoteAt;AUTH.syncedAt=Date.now();saveAuth();setSync('ok');return}
+/* Tudo o resto sobe. Inclui o caso que falhou: servidor vazio e local sem carimbo. */
+await pushState()}catch(e){setSync('offline')}}
 async function doAuth(mode){let em=document.getElementById('aem'),pw=document.getElementById('apw'),msg=document.getElementById('amsg');
 let email=(em?em.value:'').trim().toLowerCase(),password=pw?pw.value:'';
 if(!email||!password){msg.textContent=P('Fill in both fields.');return}
@@ -1237,8 +1252,8 @@ AUTH={token:d.token,email:d.email};saveAuth();await pullState();openAccount()}
 catch(e){msg.textContent=P('No connection to the server.')}}
 function signOut(){AUTH={};saveAuth();setSync('');openAccount(P('Signed out. Everything stays on this device.'))}
 function openAccount(note){let h;
-if(AUTH.token){let when=AUTH.syncedAt?new Date(AUTH.syncedAt).toLocaleString(loc()):'—';
-h='<p>'+esc(PF('Signed in as {e}.',{e:AUTH.email}))+'</p><p>'+esc(PF('Last synced: {d}',{d:when}))+'</p><p>'+esc(P('Every change is sent automatically a moment after you make it. Open the same account on another device and the state follows you.'))+'</p>'
+if(AUTH.token){let when=AUTH.syncedAt?new Date(AUTH.syncedAt).toLocaleString(loc()):'—',srv=AUTH.serverAt?new Date(AUTH.serverAt).toLocaleString(loc()):null;
+h='<p>'+esc(PF('Signed in as {e}.',{e:AUTH.email}))+'</p><p>'+esc(PF('Last synced: {d}',{d:when}))+'</p><p>'+esc(srv?PF('The server holds a copy from {d}.',{d:srv}):P('The server does not hold a copy yet — press Sync now.'))+'</p><p>'+esc(P('Every change is sent automatically a moment after you make it. Open the same account on another device and the state follows you.'))+'</p>'
 +'<div class="mfoot"><button class="btn primary" onclick="pullState().then(()=>openAccount())">'+esc(P('Sync now'))+'</button><button class="btn danger" onclick="signOut()">'+esc(P('Sign out'))+'</button><button class="btn" onclick="closeGuide()">'+esc(P('Close'))+'</button></div>';}
 else{h='<p>'+esc(P('Sign in to keep this dashboard on every device: the installed app and the browser share the same account.'))+'</p>'
 +'<div class="afld"><input id="aem" type="email" autocomplete="username" placeholder="'+esc(P('Email'))+'"><input id="apw" type="password" autocomplete="current-password" placeholder="'+esc(P('Password'))+'"></div>'
