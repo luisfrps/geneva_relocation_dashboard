@@ -1,0 +1,16 @@
+﻿name = "geneva-relocation-api"
+main = "index.js"
+compatibility_date = "2026-08-23"
+workers_dev = true
+
+# Quem pode criar conta aqui. O painel esta num URL publico; sem esta lista
+# qualquer pessoa podia registar-se e ficar com espaco no KV.
+[vars]
+ALLOWED_EMAILS = "luis.frps@gmail.com"
+
+# Segredo de assinatura das sessoes: npx wrangler secret put AUTH_SECRET
+# (nao vive aqui, nem no repositorio)
+
+[[kv_namespaces]]
+binding = "GENEVA"
+id = "eb57712dc1b548fcb7cb30698e1e228d"

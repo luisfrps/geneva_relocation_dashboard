@@ -112,6 +112,29 @@ uma checklist. **Todas as 117 tarefas (105 do `T` + 12 do `PHASE`) têm guia** �
 - Marcar a tarefa como feita **não** limpa a checklist, e completar a checklist **não** marca a
   tarefa — de propósito: uma é a intenção, a outra é o progresso.
 
+## Conta e sincronização
+
+- **API:** `https://geneva-relocation-api.luis-frps.workers.dev` — Cloudflare Worker em
+  [api/index.js](api/index.js), config em [api/wrangler.toml](api/wrangler.toml).
+  Deploy: `cd api && npx wrangler deploy`. KV `GENEVA` (`user:<email>`, `state:<email>`).
+- **`ALLOWED_EMAILS`** (var, no toml) é a lista de quem pode criar conta. O painel está num URL
+  público: sem ela, qualquer pessoa se registava. **`AUTH_SECRET`** é segredo
+  (`npx wrangler secret put AUTH_SECRET`), assina as sessões (90 dias), e não vive no repositório.
+- **A password nunca chega ao servidor.** O browser faz `PBKDF2-SHA256(password, 310 000)` e envia
+  só o derivado; o Worker guarda `SHA-256(salt aleatório || derivado)`. Isto mantém o CPU do Worker
+  quase a zero — PBKDF2 com muitas iterações no Worker estoirava o limite de CPU do plano grátis.
+  Consequência: **não há recuperação de password**, e isso está dito no ecrã.
+- **Não há merge: é last-write-wins** por `S.updatedAt`. Ao entrar, ganha o lado mais recente;
+  a cada alteração, `save()` agenda um push com 1,5 s de atraso. Bom para um utilizador em dois ou
+  três dispositivos; se algum dia forem dois utilizadores em simultâneo, isto tem de mudar.
+- `save(false)` grava **sem** mexer no `updatedAt` nem empurrar — é o que o `pullState()` usa ao
+  aplicar o estado do servidor. Chamar `save()` aí faria o dispositivo reclamar a autoria do que
+  acabou de receber.
+- O token vive em `genevaRelocationAuth`, **fora** do blob de estado: sair não apaga o progresso, e
+  o que é sincronizado nunca inclui o token.
+- **Ao testar auth, nunca criar a conta do dono com uma password inventada** — não há recuperação.
+  Acrescentar um email de teste ao `ALLOWED_EMAILS`, testar, apagar as chaves KV e repor a lista.
+
 ## Estado
 
 Tudo no browser, em `localStorage` sob a chave `genevaRelocationDashboard2026`:
