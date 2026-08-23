@@ -1,0 +1,15 @@
+{
+  "name": "Geneva Relocation Dashboard",
+  "short_name": "Genebra",
+  "description": "Recruitment and relocation command centre for the move to Geneva.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#06111f",
+  "theme_color": "#06111f",
+  "orientation": "any",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}

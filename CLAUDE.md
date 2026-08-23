@@ -13,6 +13,25 @@ Painel pessoal de recrutamento + mudança para Genebra (MSC, alvo de início a 1
 sem dependências, sem servidor. Editar o ficheiro e fazer push É o deploy (Pages publica a raiz
 de `main` em ~1 min).
 
+Ao lado dela vivem só os ficheiros que a tornam instalável (PWA):
+[manifest.webmanifest](manifest.webmanifest), [sw.js](sw.js), `icon-192.png`, `icon-512.png` e
+[scripts/make-icons.mjs](scripts/make-icons.mjs), que regenera os ícones (`node scripts/make-icons.mjs`).
+
+## Instalação (PWA)
+
+O botão «Instalar neste computador» usa o evento `beforeinstallprompt`. Quando o browser não o
+dispara (Firefox, Safari, ou critérios por cumprir), o botão abre em vez disso um modal com as
+instruções por browser — nunca fica um botão que não faz nada.
+
+- **O service worker é rede-primeiro**, de propósito: o conteúdo muda muito e um cache-first
+  deixava o painel preso numa versão antiga. Offline continua a funcionar com o que já foi servido.
+- **Ao mudar a lista `ASSETS` do `sw.js`, sobe o `VERSION`** — é o que limpa os caches antigos.
+- Instalar exige HTTPS (ou localhost) + manifest + service worker com `fetch`. O browser embutido
+  do preview do Claude Code **não regista service workers** («unknown error when fetching the
+  script»), por isso a instalação só se testa no browser real ou no GitHub Pages.
+- O estado vive no `localStorage` da origem, e a app instalada partilha-o com o browser de onde
+  foi instalada. Instalar de outro browser começa do zero — está dito no modal de ajuda.
+
 ## Estrutura do index.html
 
 | Bloco | O que é |
